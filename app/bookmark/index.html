@@ -10,12 +10,58 @@
 	</head>
 	<body ng-app="app" ng-controller="MainController as main">
 		<div class="container">
-			<h1>{{main.title}}</h1>
-			<div ng-repeat="bookmark in main.bookmarks">
-				<h2>{{bookmark.title}}</h2>
-				<p><a href={{bookmark.url}}>{{bookmark.url}}</a></p>
-				<p>Added: {{bookmark.date | date}} by {{bookmark.user}} </p>
-				<p>{{bookmark.comment}}</p>
+			<br><br>
+			<div class="row clearfix">
+				<div class="col-md-6 column">
+					<form role="form" class="form-inline">
+						<div class="form-group">
+							<label for="bookmarkSearch"><span class="glyphicon glyphicon-search"></span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="main.search" />
+						</div>
+					</form> <br/>
+					<div class="panel panel-primary" ng-repeat="bookmark in main.bookmarks | filter: main.search">
+						<div class="panel-heading">
+							<h3 class="panel-title">
+							{{bookmark.title}}
+							</h3>
+						</div>
+						<div class="panel-body">
+							<p><a href={{bookmark.url}}>{{bookmark.url}}</a></p>
+							<p>{{bookmark.comment}}</p>
+						</div>
+						<div class="panel-footer">
+							Added: {{bookmark.date | date}} by {{bookmark.user}}
+						</div>
+					</div>
+				</div>
+				<!-- RH -->
+				<div class="col-md-6 column">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label for="inputURL" class="col-sm-2 control-label">URL</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputURL" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputTitle" class="col-sm-2 control-label">Title</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputTitle" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputComment" class="col-sm-2 control-label">Commnt</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputComment" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputUser" class="col-sm-2 control-label">User</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" id="inputUser" />
+							</div>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</body>

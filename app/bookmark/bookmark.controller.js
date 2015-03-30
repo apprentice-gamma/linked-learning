@@ -11,6 +11,7 @@
         var vm = this;
         vm.title = "Bookmark Controller Outside";
         vm.bookmarks = [];
+        vm.search = "";
 
         activate(vm);
 
