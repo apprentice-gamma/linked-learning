@@ -12,10 +12,10 @@
 		<div class="container">
 			<h1>{{main.title}}</h1>
 
-			<h2>{{main.bookmark.title}}</h2>
-			<p><a href={{main.bookmark.url}}>{{main.bookmark.url}}</a></p>
-			<p>Added: {{main.bookmark.date | date}} by {{main.bookmark.user}} </p>
-        	<p>{{main.bookmark.comment}}</p>	
+			<h2>{{main.bookmarks[0].title}}</h2>
+			<p><a href={{main.bookmarks[0].url}}>{{main.bookmarks[0].url}}</a></p>
+			<p>Added: {{main.bookmarks[0].date | date}} by {{main.bookmarks[0].user}} </p>
+        	<p>{{main.bookmarks[0].comment}}</p>	
 	</div>
 </body>
 </html>

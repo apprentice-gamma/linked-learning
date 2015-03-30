@@ -10,18 +10,21 @@
     function BookmarkController() {
         var vm = this;
         vm.title = "Bookmark Controller Outside";
-        vm.bookmark = {};
-
+        vm.bookmarks = [];
+        
         activate(vm);
 
         ////////////////
 
         function activate(vm) {
-        	vm.bookmark.url = "http://www.google.com/";
-        	vm.bookmark.date = Date.now();
-        	vm.bookmark.user = "Robot";
-        	vm.bookmark.comment = "A search engine";
-        	vm.bookmark.title = "Google!";
+        	var newBookMark = {};
+	        	newBookMark.url = "http://www.google.com/";
+	        	newBookMark.date = Date.now();
+	        	newBookMark.user = "Robot";
+	        	newBookMark.comment = "A search engine";
+	        	newBookMark.title = "Google!";
+	        vm.bookmarks.push(newBookMark);
+	        newBookMark = {};
         }
     }
 })();
