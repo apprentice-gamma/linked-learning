@@ -11,7 +11,7 @@
         var vm = this;
         vm.title = "Bookmark Controller Outside";
         vm.bookmarks = [];
-        
+
         activate(vm);
 
         ////////////////
@@ -23,6 +23,13 @@
 	        	newBookMark.user = "Robot";
 	        	newBookMark.comment = "A search engine";
 	        	newBookMark.title = "Google!";
+	        vm.bookmarks.push(newBookMark);
+	        newBookMark = {};
+	     	    newBookMark.url = "http://www.github.com/";
+	        	newBookMark.date = Date.now();
+	        	newBookMark.user = "Robot";
+	        	newBookMark.comment = "version tracking mastersite pro gold";
+	        	newBookMark.title = "Git Hub!";
 	        vm.bookmarks.push(newBookMark);
 	        newBookMark = {};
         }
