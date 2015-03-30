@@ -11,6 +11,11 @@
 	<body ng-app="app" ng-controller="MainController as main">
 		<div class="container">
 			<h1>{{main.title}}</h1>
+
+			<h2>{{main.bookmark.title}}</h2>
+			<p><a href={{main.bookmark.url}}>{{main.bookmark.url}}</a></p>
+			<p>Added: {{main.bookmark.date | date}} by {{main.bookmark.user}} </p>
+        	<p>{{main.bookmark.comment}}</p>	
 	</div>
 </body>
 </html>
