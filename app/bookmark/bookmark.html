@@ -19,7 +19,7 @@
 						<div class="form-group">
 							<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vm.search" size="50" />
 						</div>
-						<div class="pull-right">I am a number</div>
+						<div class="pull-right">{{(vm.bookmarks|filter: vm.search).length}} bookmarks of {{vm.bookmarks.length}}</div>
 					</form> <br/>
 					<div class="panel panel-primary" ng-repeat="bookmark in vm.bookmarks | filter: vm.search">
 						<div class="panel-heading">
