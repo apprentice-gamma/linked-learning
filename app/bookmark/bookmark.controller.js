@@ -8,27 +8,44 @@
         vm.title = "Bookmark Controller Outside";
         vm.bookmarks = [];
         vm.search = "";
+        vm.addBookmark = addBookmark;
+        vm.deleteBookmark = deleteBookmark;
+        vm.newBookmark = {};
 
         activate(vm);
 
         ////////////////
 
         function activate(vm) {
-        	var newBookMark = {};
-	        	newBookMark.url = "http://www.google.com/";
-	        	newBookMark.date = Date.now();
-	        	newBookMark.user = "Robot";
-	        	newBookMark.comment = "A search engine";
-	        	newBookMark.title = "Google!";
-	        vm.bookmarks.push(newBookMark);
-	        newBookMark = {};
-	     	    newBookMark.url = "http://www.github.com/";
-	        	newBookMark.date = Date.now();
-	        	newBookMark.user = "Robot";
-	        	newBookMark.comment = "version tracking mastersite pro gold";
-	        	newBookMark.title = "Git Hub!";
-	        vm.bookmarks.push(newBookMark);
-	        newBookMark = {};
+        	
+	        	vm.newBookmark.url = "http://www.google.com/";
+	        	vm.newBookmark.date = Date.now();
+	        	vm.newBookmark.user = "Robot";
+	        	vm.newBookmark.comment = "A search engine";
+	        	vm.newBookmark.title = "Google!";
+	        vm.bookmarks.push(vm.newBookmark);
+	        vm.newBookmark = {};
+	     	    vm.newBookmark.url = "http://www.github.com/";
+	        	vm.newBookmark.date = Date.now();
+	        	vm.newBookmark.user = "Robot";
+	        	vm.newBookmark.comment = "version tracking mastersite pro gold";
+	        	vm.newBookmark.title = "Git Hub!";
+	        vm.bookmarks.push(vm.newBookmark);
+	        vm.newBookmark = {};
+        }
+
+        function addBookmark() {
+        	console.log("adding bookmark");
+        	vm.newBookmark.date = Date.now();
+        	vm.bookmarks.push(vm.newBookmark);
+	        vm.newBookmark = {};
+
+        }
+
+        function deleteBookmark(index) {
+        	console.log("Removing bookmark at " + index);
+        	vm.bookmarks.splice(index, 1);
+
         }
     }
 })();
