@@ -21,14 +21,14 @@
 	        	vm.newBookmark.url = "http://www.google.com/";
 	        	vm.newBookmark.date = Date.now();
 	        	vm.newBookmark.user = "Robot";
-	        	vm.newBookmark.comment = "A search engine";
+	        	vm.newBookmark.description = "A search engine";
 	        	vm.newBookmark.title = "Google!";
 	        vm.bookmarks.push(vm.newBookmark);
 	        vm.newBookmark = {};
 	     	    vm.newBookmark.url = "http://www.github.com/";
 	        	vm.newBookmark.date = Date.now();
 	        	vm.newBookmark.user = "Robot";
-	        	vm.newBookmark.comment = "version tracking mastersite pro gold";
+	        	vm.newBookmark.description = "version tracking mastersite pro gold";
 	        	vm.newBookmark.title = "Git Hub!";
 	        vm.bookmarks.push(vm.newBookmark);
 	        vm.newBookmark = {};
