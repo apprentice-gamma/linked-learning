@@ -30,7 +30,7 @@
 						</div>
 						<div class="panel-footer">
 							Added: {{bookmark.date | date}} by {{bookmark.user}}
-							<button class="btn btn-danger pull-right " ng-click=""><span class="glyphicon glyphicon-trash"></span></button>
+							<button class="btn btn-danger pull-right " ng-click="main.deleteBookmark($index)"><span class="glyphicon glyphicon-trash"></span></button>
 						</div>
 					</div>
 				</div> <!-- column -->
@@ -40,30 +40,30 @@
 						<div class="form-group">
 							<label for="inputURL" class="col-sm-2 control-label">URL</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputURL" ng-model="main.newBookMark.url" />
+								<input type="text" class="form-control" id="inputURL" ng-model="main.newBookmark.url" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputTitle" class="col-sm-2 control-label">Title</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputTitle" ng-model="main.newBookMark.title"/>
+								<input type="text" class="form-control" id="inputTitle" ng-model="main.newBookmark.title"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputComment" class="col-sm-2 control-label">Comment</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputComment" ng-model="main.newBookMark.comment"/>
+								<input type="text" class="form-control" id="inputComment" ng-model="main.newBookmark.comment"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputUser" class="col-sm-2 control-label">User</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputUser" ng-model="main.newBookMark.user"/>
+								<input type="text" class="form-control" id="inputUser" ng-model="main.newBookmark.user"/>
 
-							</div><p>{{main.newBookMark.url}}</p>
+							</div><p>{{main.newBookmark.url}}</p>
 						</div>
 							<div class="form-group">
-								<button class="btn btn-success pull-right" ng-click="main.addBookMark()"><span class="glyphicon glyphicon-plus-sign"></span> Add
+								<button class="btn btn-success pull-right" ng-click="main.addBookmark()"><span class="glyphicon glyphicon-plus-sign"></span> Add
                 				</button>
 							</div>
 					</form>
