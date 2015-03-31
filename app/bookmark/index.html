@@ -8,17 +8,17 @@
 		<script src="bookmark.app.js"></script>
 		<script src="bookmark.controller.js"></script>
 	</head>
-	<body ng-app="app" ng-controller="MainController as main">
+	<body ng-app="bookmark" ng-controller="BookmarkController as vm">
 		<div class="container">
 			<br><br>
 			<div class="row clearfix">
-				<div class="col-md-6 column">
+				<div class="col-md-8 column">
 					<form role="form" class="form-inline">
 						<div class="form-group">
-							<label for="bookmarkSearch"><span class="glyphicon glyphicon-search"></span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="main.search" />
+							<label for="bookmarkSearch"><span class="glyphicon glyphicon-search"></span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vm.search" />
 						</div>
 					</form> <br/>
-					<div class="panel panel-primary" ng-repeat="bookmark in main.bookmarks | filter: main.search">
+					<div class="panel panel-primary" ng-repeat="bookmark in vm.bookmarks | filter: vm.search">
 						<div class="panel-heading">
 							<h3 class="panel-title">
 							{{bookmark.title}}
@@ -26,45 +26,43 @@
 						</div>
 						<div class="panel-body">
 							<p><a href={{bookmark.url}}>{{bookmark.url}}</a></p>
-							<p>{{bookmark.comment}}</p>
+							<p>{{bookmark.description}}</p>
 						</div>
 						<div class="panel-footer">
 							Added: {{bookmark.date | date}} by {{bookmark.user}}
-							<button class="btn btn-danger pull-right " ng-click=""><span class="glyphicon glyphicon-trash"></span></button>
+							<button class="btn btn-danger pull-right btn-xs" ng-click="vm.deleteBookmark($index)"><span class="glyphicon glyphicon-trash"></span></button>
 						</div>
 					</div>
 				</div> <!-- column -->
 				<!-- RH -->
-				<div class="col-md-6 column">
+				<div class="col-md-4 column">
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
-							<label for="inputURL" class="col-sm-2 control-label">URL</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputURL" ng-model="main.newBookMark.url" />
+							<div class="col-sm-12">
+								<input type="text" class="form-control" id="inputURL" ng-model="vm.newBookmark.url" placeholder="URL"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputTitle" class="col-sm-2 control-label">Title</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputTitle" ng-model="main.newBookMark.title"/>
+							<div class="col-sm-12">
+								<input type="text" class="form-control" id="inputTitle" ng-model="vm.newBookmark.title" placeholder="Title"/>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputComment" class="col-sm-2 control-label">Comment</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputComment" ng-model="main.newBookMark.comment"/>
+							<div class="col-sm-12">
+								<textarea rows="3" class="form-control" id="inputdescription" ng-model="vm.newBookmark.description" placeholder="Description"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputUser" class="col-sm-2 control-label">User</label>
-							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputUser" ng-model="main.newBookMark.user"/>
+							<div class="col-sm-12">
+								<input type="text" class="form-control" id="inputUser" ng-model="vm.newBookmark.user" placeholder="User"/>
 
-							</div><p>{{main.newBookMark.url}}</p>
+							</div><p>{{vm.newBookmark.url}}</p>
 						</div>
 							<div class="form-group">
-								<button class="btn btn-success pull-right" ng-click="main.addBookMark()"><span class="glyphicon glyphicon-plus-sign"></span> Add
+								<div class="col-sm-12">
+								<button class="btn btn-success pull-right" ng-click="vm.addBookmark()"><span class="glyphicon glyphicon-plus-sign"></span> Add
                 				</button>
+                			</div>
 							</div>
 					</form>
 				</div> <!-- column -->

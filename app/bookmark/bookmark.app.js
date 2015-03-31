@@ -1,4 +1,4 @@
 (function() {
-	angular.module('app', []);
+	angular.module('bookmark', []);
 })();
 
