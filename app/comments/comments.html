@@ -5,16 +5,23 @@
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 </head>
 <body ng-controller="CommentsController as comments">
+	<div class="col-md-12 column">&nbsp;</div>
 	<div class="container">
 		<div class="col-md-4 column pull-right">
 			<div class="row">
-				<form ng-submit="comments.addComment()">
-					<div class="form-group">
-						<label class="label label-primary">Comment</label>
-						<textarea ng-model="comments.comment.body" class="form-control" rows="5"></textarea>
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Comment</h3>
 					</div>
-					<button type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
-				</form>
+					<div class="panel-body">
+					<form ng-submit="comments.addComment()">
+						<div class="form-group">
+							<textarea ng-model="comments.comment.body" class="form-control" rows="5"></textarea>
+						</div>
+						<button type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
+					</form>
+					</div>
+				</div>
 			</div>
 
 			<div class="row">
