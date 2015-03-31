@@ -8,17 +8,17 @@
 		<script src="bookmark.app.js"></script>
 		<script src="bookmark.controller.js"></script>
 	</head>
-	<body ng-app="app" ng-controller="MainController as main">
+	<body ng-app="bookmark" ng-controller="BookmarkController as vm">
 		<div class="container">
 			<br><br>
 			<div class="row clearfix">
 				<div class="col-md-6 column">
 					<form role="form" class="form-inline">
 						<div class="form-group">
-							<label for="bookmarkSearch"><span class="glyphicon glyphicon-search"></span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="main.search" />
+							<label for="bookmarkSearch"><span class="glyphicon glyphicon-search"></span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vm.search" />
 						</div>
 					</form> <br/>
-					<div class="panel panel-primary" ng-repeat="bookmark in main.bookmarks | filter: main.search">
+					<div class="panel panel-primary" ng-repeat="bookmark in vm.bookmarks | filter: vm.search">
 						<div class="panel-heading">
 							<h3 class="panel-title">
 							{{bookmark.title}}
@@ -30,7 +30,7 @@
 						</div>
 						<div class="panel-footer">
 							Added: {{bookmark.date | date}} by {{bookmark.user}}
-							<button class="btn btn-danger pull-right " ng-click="main.deleteBookmark($index)"><span class="glyphicon glyphicon-trash"></span></button>
+							<button class="btn btn-danger pull-right " ng-click="vm.deleteBookmark($index)"><span class="glyphicon glyphicon-trash"></span></button>
 						</div>
 					</div>
 				</div> <!-- column -->
@@ -40,30 +40,30 @@
 						<div class="form-group">
 							<label for="inputURL" class="col-sm-2 control-label">URL</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputURL" ng-model="main.newBookmark.url" />
+								<input type="text" class="form-control" id="inputURL" ng-model="vm.newBookmark.url" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputTitle" class="col-sm-2 control-label">Title</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputTitle" ng-model="main.newBookmark.title"/>
+								<input type="text" class="form-control" id="inputTitle" ng-model="vm.newBookmark.title"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputComment" class="col-sm-2 control-label">Comment</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputComment" ng-model="main.newBookmark.comment"/>
+								<input type="text" class="form-control" id="inputComment" ng-model="vm.newBookmark.comment"/>
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputUser" class="col-sm-2 control-label">User</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="inputUser" ng-model="main.newBookmark.user"/>
+								<input type="text" class="form-control" id="inputUser" ng-model="vm.newBookmark.user"/>
 
-							</div><p>{{main.newBookmark.url}}</p>
+							</div><p>{{vm.newBookmark.url}}</p>
 						</div>
 							<div class="form-group">
-								<button class="btn btn-success pull-right" ng-click="main.addBookmark()"><span class="glyphicon glyphicon-plus-sign"></span> Add
+								<button class="btn btn-success pull-right" ng-click="vm.addBookmark()"><span class="glyphicon glyphicon-plus-sign"></span> Add
                 				</button>
 							</div>
 					</form>

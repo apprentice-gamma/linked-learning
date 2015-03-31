@@ -1,7 +1,7 @@
 (function() {
     angular
-        .module('app')
-        .controller('MainController', BookmarkController);
+        .module('bookmark')
+        .controller('BookmarkController', BookmarkController);
 
     function BookmarkController() {
         var vm = this;
