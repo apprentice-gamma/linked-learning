@@ -17,7 +17,7 @@
 					<div class="panel-body">
 					<form name="commentForm" ng-submit="commentForm.$valid && comments.addComment()" novalidate>
 						<div class="form-group">
-							<textarea name="commentText" ng-model="comments.comment.body" class="form-control" rows="5" minLength="3" required></textarea>
+							<textarea name="commentText" ng-model="comments.comment.body" class="form-control" rows="5" required></textarea>
 							<div ng-show="commentForm.$submitted || commentForm.commentText.$touched">
 								<div ng-show="commentForm.commentText.$error.required && commentForm.commentText.$dirty">Please enter comment</div>
 							</div>
