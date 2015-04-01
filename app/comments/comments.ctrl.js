@@ -1,5 +1,5 @@
 angular
-	.module('app')
+	.module('linked-learning')
 	.controller("CommentsController", CommentsController);
 
 	// Comments array to emulate the array of comments in Bookmark

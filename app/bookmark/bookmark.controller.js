@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('bookmark')
+        .module('linked-learning')
         .controller('BookmarkController', BookmarkController);
 
     function BookmarkController() {
