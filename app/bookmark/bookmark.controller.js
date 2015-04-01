@@ -39,19 +39,10 @@
         }
 
         function addBookmark(isValid) {
-            if (isValid) {
-                console.log('VALID!');
                 console.log("adding bookmark");
                 vm.newBookmark.date = Date.now();
                 vm.bookmarks.push(vm.newBookmark);
-                vm.newBookmark = {};
-            } else {
-                console.log('inValid!');
-
-                alert('Invalid Form');
-            }
-
-            
+                vm.newBookmark = {};        
 
         }
 
