@@ -15,7 +15,7 @@
 		<div class="container" ng-controller="BookmarkController as vmBookmark">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
-					<h2>Linked Learning Listings</h2>
+					<div ng-include src="'./templates/navbar.html'"></div>
 				</div>
 				<div class="col-md-8 column">
 					<div ng-include src="'./templates/viewListings.html'" ng-if="vmLayout.pageL == 'listings'"></div>	
