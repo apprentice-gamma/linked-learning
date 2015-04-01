@@ -6,7 +6,7 @@
     function Controller() {
         var vm = this;
         vm.title = 'Layout Controller';
-        vm.pageL = 'listing';
+        vm.pageL = 'listings';
         vm.pageR = 'add';
 
         activate();
