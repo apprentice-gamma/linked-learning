@@ -10,13 +10,14 @@ angular
 			date: Date.now()
 		};
 		vm.existingComments = [];
+		
 		vm.addComment = function() {
 			vm.existingComments.push(vm.comment);
 			vm.comment = {
 				body: "",
 				date: Date.now()
 			};
-		}
+		};
 
 	}
 
