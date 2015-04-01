@@ -62,5 +62,19 @@
             vm.bookmarks.splice(index, 1);
 
         }
+
+        function addComment(bookmark) {
+                console.log("adding comment");
+                vm.newComment.date = Date.now();
+                bookmark.comments.push(vm.newComment);
+                vm.newComment = {};        
+
+        }
+
+        function deleteComment(bookmark, index) {
+            console.log("Removing comments at " + index);
+            bookmark.comments.splice(index, 1);
+
+        }
     }
 })();
