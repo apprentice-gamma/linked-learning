@@ -30,7 +30,11 @@
 						</div>
 						<div class="panel-body">
 							<p><a href={{bookmark.url}}>{{bookmark.url}}</a></p>
-							<p>{{bookmark.description}}</p>
+							<p>{{bookmark.description}} </p>
+							<div class="panel panel-primary" ng-repeat="comment in bookmark.comments">
+								<div class="panel-body">{{comment.body}}  Date: {{comment.date | date}}</div>
+							</div>
+
 						</div>
 						<div class="panel-footer">
 							Added: {{bookmark.date | date}} by {{bookmark.user}}
