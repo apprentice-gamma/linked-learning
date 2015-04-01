@@ -3,6 +3,7 @@
 <head>
 	<title>Comments</title>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../css/comments.css">
 </head>
 <body ng-controller="CommentsController as comments">
 	<div class="col-md-12 column">&nbsp;</div>
@@ -14,11 +15,14 @@
 						<h3 class="panel-title">Comment</h3>
 					</div>
 					<div class="panel-body">
-					<form ng-submit="comments.addComment()">
+					<form name="commentForm" ng-submit="commentForm.$valid && comments.addComment()" novalidate>
 						<div class="form-group">
-							<textarea ng-model="comments.comment.body" class="form-control" rows="5"></textarea>
+							<textarea name="commentText" ng-model="comments.comment.body" class="form-control" rows="5" required></textarea>
+							<div ng-show="commentForm.$submitted || commentForm.commentText.$touched">
+								<div ng-show="commentForm.commentText.$error.required && commentForm.commentText.$dirty">Please enter comment</div>
+							</div>
 						</div>
-						<button type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
+						<button type="submit" class="btn btn-success pull-right" ng-click="commentForm.$setPristine()"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
 					</form>
 					</div>
 				</div>
