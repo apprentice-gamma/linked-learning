@@ -21,21 +21,33 @@
             vm.newBookmark.user = "Robot";
             vm.newBookmark.description = "A search engine";
             vm.newBookmark.title = "Google!";
-            addBookmark();
+            vm.newBookmark.date = Date.now();
+            vm.bookmarks.push(vm.newBookmark);
+            vm.newBookmark = {};
 
             
             vm.newBookmark.url = "http://www.github.com/";
             vm.newBookmark.user = "Robot";
             vm.newBookmark.description = "version tracking mastersite pro gold";
             vm.newBookmark.title = "Git Hub!";
-            addBookmark();
-        }
-
-        function addBookmark() {
-            console.log("adding bookmark");
             vm.newBookmark.date = Date.now();
             vm.bookmarks.push(vm.newBookmark);
             vm.newBookmark = {};
+        }
+
+        function addBookmark(isValid) {
+            if (isValid) {
+                console.log('VALID!');
+                console.log("adding bookmark");
+                vm.newBookmark.date = Date.now();
+                vm.bookmarks.push(vm.newBookmark);
+                vm.newBookmark = {};
+            } else {
+                console.log('inValid!');
+                alert('Invalid Form');
+            }
+
+            
 
         }
 
