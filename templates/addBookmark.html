@@ -1,0 +1,32 @@
+<h3>Add Bookmark</h3>
+<form name="addBookmark" class="form-horizontal" role="form" ng-submit="vm.addBookmark(addBookmark.$valid)" novalidate>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<input type="text" class="form-control input" id="inputURL" ng-model="vm.newBookmark.url" placeholder="URL (required)" ng-pattern="vm.urlRegEx" name = "url" required/>
+			<h5 class='text-danger' ng-show="addBookmark.url.$invalid && addBookmark.url.$dirty">URL INVALID</h5>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<input type="text" class="form-control input" id="inputTitle" ng-model="vm.newBookmark.title" placeholder="Title (required)" name="title" required/>
+			<h5 class='text-danger' ng-show="addBookmark.title.$invalid && addBookmark.title.$dirty">TITLE REQUIRED</h5>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<textarea rows="3" class="form-control" id="inputdescription" ng-model="vm.newBookmark.description" placeholder="Description"></textarea>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<input type="text" class="form-control input" id="inputUser" ng-model="vm.newBookmark.user" placeholder="User (required)" name="username" required/>
+			<h5 class='text-danger' ng-show="addBookmark.username.$invalid && addBookmark.username.$dirty">USERNAME REQUIRED</h5>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-sm-12">
+			<button class="btn btn-success pull-right" type="submit" ng-disabled="addBookmark.$invalid" ng-click="addBookmark.$setPristine()"><span class="glyphicon glyphicon-plus-sign"></span> Add
+			</button>
+		</div>
+	</div>
+</form>
