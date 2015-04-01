@@ -10,15 +10,26 @@
         vm.search = "";
         vm.addBookmark = addBookmark;
         vm.deleteBookmark = deleteBookmark;
+        vm.newComment = {};
         vm.newBookmark = {};
         vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
-        vm.validForm = true;
 
         activate(vm);
 
         ////////////////
 
         function activate(vm) {
+
+            vm.newComment.body = "Google is the best search engine EVER!";
+            vm.newComment.date = Date.now();
+            vm.newBookmark.comments =[];
+            vm.newBookmark.comments.push(vm.newComment);
+            vm.newComment = {};
+
+            vm.newComment.body = "Google is not the best search engine - bing is!";
+            vm.newComment.date = Date.now();
+            vm.newBookmark.comments.push(vm.newComment);
+            vm.newComment = {};
 
             vm.newBookmark.url = "http://www.google.com/";
             vm.newBookmark.user = "Robot";
