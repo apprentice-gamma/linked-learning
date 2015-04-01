@@ -8,10 +8,11 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 		<script src="./app/linked-learning.app.js"></script>
 		<script src="./app/bookmark/bookmark.controller.js"></script>
+		<script src="./app/layout/layout.controller.js"></script>
 		<script src="./app/comments/comments.ctrl.js"></script>
 	</head>
-	<body ng-app="linked-learning" ng-controller="BookmarkController as vm">
-		<div class="container">
+	<body ng-app="linked-learning" ng-controller="LayoutController as vmLayout" >
+		<div class="container" ng-controller="BookmarkController as vmBookmark">
 			<div class="row clearfix">
 				<div class="col-md-12 column">
 					<h2>Linked Learning Listings</h2>
@@ -22,7 +23,7 @@
 					<!-- RH -->
 				<div class="col-md-4 column">
 					<div ng-include src="'./templates/addBookmark.html'"></div>
-					<div ng-include src="'./templates/viewComments.html'" ng-controller="CommentsController as comments"></div>
+					<div ng-include src="'./templates/viewComments.html'" ng-controller="CommentsController as vmComments"></div>
 				</div> <!-- column -->
 			</div> <!-- row clearfix -->
 		</div> <!-- container -->

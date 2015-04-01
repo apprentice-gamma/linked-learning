@@ -1,10 +1,10 @@
 <form role="form" class="form-inline">
 	<div class="form-group">
-		<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vm.search" size="50" />
+		<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vmBookmark.search" size="50" />
 	</div>
-	<div class="pull-right">{{(vm.bookmarks|filter: vm.search).length}} bookmarks of {{vm.bookmarks.length}}</div>
+	<div class="pull-right">{{(vmBookmark.bookmarks|filter: vmBookmark.search).length}} bookmarks of {{vmBookmark.bookmarks.length}}</div>
 </form> <br/>
-<div class="panel panel-primary" ng-repeat="bookmark in vm.bookmarks | filter: vm.search">
+<div class="panel panel-primary" ng-repeat="bookmark in vmBookmark.bookmarks | filter: vmBookmark.search">
 	<div class="panel-heading">
 		<h3 class="panel-title">
 		{{bookmark.title}}
@@ -19,6 +19,6 @@
 	</div>
 	<div class="panel-footer">
 		Added: {{bookmark.date | date}} by {{bookmark.user}}
-		<button class="btn btn-danger pull-right btn-xs" ng-click="vm.deleteBookmark($index)"><span class="glyphicon glyphicon-trash"></span></button>
+		<button class="btn btn-danger pull-right btn-xs" ng-click="vmBookmark.deleteBookmark($index)"><span class="glyphicon glyphicon-trash"></span></button>
 	</div>
 </div>
