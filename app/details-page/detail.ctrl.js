@@ -5,8 +5,8 @@ angular
 
 	function DetailController (){
 		var vm = this;
-		vm.bookmark = {url: "http://www.w3schools.com/"};
-		
+		vm.bookmark = {name: 'W3Schools', url: "http://www.w3schools.com/"};
+
 	};
 
 })();
