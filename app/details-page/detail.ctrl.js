@@ -5,7 +5,8 @@ angular
 
 	function DetailController (){
 		var vm = this;
-		vm.bookmark = $sce.trustAsResourceUrl("http://www.w3schools.com/");
+		vm.bookmark = {url: "http://www.w3schools.com/"};
+		
 	};
 
 })();

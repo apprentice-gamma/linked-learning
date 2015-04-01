@@ -1,11 +1,16 @@
 (function(){
 
 angular
-	.module('app')
-	.filter('trust', function($sce) {
-        return function(input) {
-            return $sce.trustAsHtml(input || '');
-        }
-	});
+  .module('app')
+  .filter('trust', [
+    '$sce',
+    function($sce) {
+      return function(value) {
+     
+        return $sce.trustAsResourceUrl(value);
+      }
+    }
+  ])
+;
 
 })();

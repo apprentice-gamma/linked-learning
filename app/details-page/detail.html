@@ -6,12 +6,13 @@
 </head>
 <body>
 	<div ng-controller="DetailController as detail">
-		{{detail.bookmark}}
-		<iframe width="75%" height="800" ng-src="{{detail.bookmark}}"></iframe>
+		{{detail.bookmark.url}}
+		<iframe width="75%" height="800" ng-src="{{detail.bookmark.url | trust}}"></iframe>
 
 	</div>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
 	<script src="../app.js"></script>
 	<script src="detail.ctrl.js"></script>
+	<script src="detail.filter.js"></script>
 </body>
 </html>
