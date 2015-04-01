@@ -12,6 +12,8 @@
         vm.deleteBookmark = deleteBookmark;
         vm.newBookmark = {};
         vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
+        vm.validForm = true;
+
         activate(vm);
 
         ////////////////
@@ -45,7 +47,7 @@
                 vm.newBookmark = {};
             } else {
                 console.log('inValid!');
-                
+
                 alert('Invalid Form');
             }
 
