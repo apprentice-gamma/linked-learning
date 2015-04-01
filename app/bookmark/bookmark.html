@@ -67,10 +67,7 @@
 								</div>
 								<div class="form-group">
 									<div class="col-sm-12">
-								
-										<h4 class="pull-left text-danger" ng-if="!vm.validForm"> URL INVALID </h4>
-									
-										<button class="btn btn-success pull-right" type="submit" ng-disabled="addBookmark.$invalid"><span class="glyphicon glyphicon-plus-sign"></span> Add
+										<button class="btn btn-success pull-right" type="submit" ng-disabled="addBookmark.$invalid" ng-click="addBookmark.$setPristine()"><span class="glyphicon glyphicon-plus-sign"></span> Add
 										</button>
 									</div>
 								</div>
