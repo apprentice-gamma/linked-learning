@@ -1,0 +1,26 @@
+<div class="row">
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+			<h3 class="panel-title">Comment</h3>
+		</div>
+		<div class="panel-body">
+			<form name="commentForm" ng-submit="commentForm.$valid && comments.addComment()" novalidate>
+				<div class="form-group">
+					<textarea name="commentText" ng-model="comments.comment.body" class="form-control" rows="5" required></textarea>
+					<div ng-show="commentForm.$submitted || commentForm.commentText.$touched">
+						<div ng-show="commentForm.commentText.$error.required && commentForm.commentText.$dirty">Please enter comment</div>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-success pull-right" ng-click="commentForm.$setPristine()"><span class="glyphicon glyphicon-plus-sign"></span> Add</button>
+			</form>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div ng-repeat="comment in comments.existingComments">
+		<p>
+			<strong>Placeholder for user's name.</strong> {{comment.date | date}}<br />
+			{{comment.body}}
+		</p>
+	</div>
+</div>
