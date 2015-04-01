@@ -40,15 +40,15 @@
 					<!-- RH -->
 					<div class="col-md-4 column">
 						<h3>Add Bookmark</h3>
-						<form class="form-horizontal" role="form">
+						<form class="form-horizontal" role="form" novalidate>
 							<div class="form-group">
 								<div class="col-sm-12">
-									<input type="text" class="form-control" id="inputURL" ng-model="vm.newBookmark.url" placeholder="URL"/>
+									<input type="url" class="form-control" id="inputURL" ng-model="vm.newBookmark.url" placeholder="URL" ng-required='true'/>
 								</div>
 							</div>
 							<div class="form-group">
 								<div class="col-sm-12">
-									<input type="text" class="form-control" id="inputTitle" ng-model="vm.newBookmark.title" placeholder="Title"/>
+									<input type="text" class="form-control" id="inputTitle" ng-model="vm.newBookmark.title" placeholder="Title" ng-required='true'/>
 								</div>
 							</div>
 							<div class="form-group">
@@ -58,7 +58,7 @@
 							</div>
 							<div class="form-group">
 								<div class="col-sm-12">
-									<input type="text" class="form-control" id="inputUser" ng-model="vm.newBookmark.user" placeholder="User"/>
+									<input type="text" class="form-control" id="inputUser" ng-model="vm.newBookmark.user" placeholder="User" ng-required='true'/>
 									</div><p>{{vm.newBookmark.url}}</p>
 								</div>
 								<div class="form-group">

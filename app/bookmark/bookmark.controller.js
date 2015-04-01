@@ -11,7 +11,6 @@
         vm.addBookmark = addBookmark;
         vm.deleteBookmark = deleteBookmark;
         vm.newBookmark = {};
-
         activate(vm);
 
         ////////////////
