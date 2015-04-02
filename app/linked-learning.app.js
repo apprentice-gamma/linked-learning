@@ -1,1 +1,1 @@
-angular.module('linked-learning', []);
+angular.module('linked-learning', ['ngRoute']);
