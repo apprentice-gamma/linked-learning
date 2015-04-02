@@ -70,6 +70,10 @@
         }
 
         function loadComments(index, commentController) {
+             if(typeof vm.bookmarks[index].comments === "undefined"){
+                vm.bookmarks[index].comments = [];
+                console.log("was undefined, but we fixed it!");
+            }
             commentController.existingComments = vm.bookmarks[index].comments;
         }
 
