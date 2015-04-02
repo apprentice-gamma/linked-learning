@@ -3,10 +3,11 @@
         .module('linked-learning')
         .controller('BookmarkController', BookmarkController);
 
-    function BookmarkController(BookmarkFactory) {
+    function BookmarkController() {
         var vm = this;
         vm.title = "Bookmark Controller Outside";
-        vm.bookmarks = BookmarkFactory.bookmarks;
+        //vm.bookmarks = BookmarkFactory.bookmarks;
+        vm.bookmarks = [];
         vm.search = "";
         vm.addBookmark = addBookmark;
         vm.deleteBookmark = deleteBookmark;

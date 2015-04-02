@@ -3,9 +3,9 @@ angular
 	.module('linked-learning')
 	.controller('DetailController', DetailController);
 
-	function DetailController ($routeParams, BookmarkFactory){
+	function DetailController ($routeParams, ){
 		var vm = this;
-		vm.bookmarks = BookmarkFactory;
+		//vm.bookmarks = BookmarkFactory;
 
 		vm.bookmarkURL = $routeParams.bookmarkURL;
 		vm.iframeURL = "http://" + vm.bookmarkURL;
