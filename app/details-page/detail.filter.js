@@ -8,7 +8,7 @@ angular
       return function(value) {
      
         return $sce.trustAsResourceUrl(value);
-      }
+      };
     }
   ])
 ;

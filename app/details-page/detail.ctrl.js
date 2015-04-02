@@ -7,6 +7,6 @@ angular
 		var vm = this;
 		vm.bookmark = {title: 'W3Schools', url: "http://www.w3schools.com/"};
 
-	};
+	}
 
 })();
