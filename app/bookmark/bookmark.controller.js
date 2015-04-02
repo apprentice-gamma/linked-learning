@@ -3,7 +3,7 @@
         .module('linked-learning')
         .controller('BookmarkController', BookmarkController);
 
-    function BookmarkController() {
+    function BookmarkController(BookmarkFactory) {
         var vm = this;
         vm.title = "Bookmark Controller Outside";
         vm.bookmarks = [];
@@ -24,7 +24,7 @@
         ////////////////
 
         function activate(vm) {
-            vm.bookmarks = BookmarkFactory.bookmarks;          
+            vm.bookmarks = BookmarkFactory.bookmarks;
         }
 
         function addBookmark(isValid) {
@@ -35,7 +35,7 @@
                 vm.newBookmark.date = Date.now();
                 vm.bookmarks.push(vm.newBookmark);
                 vm.newBookmark = {};
-                vm.newBookmark.comments = [];        
+                vm.newBookmark.comments = [];
 
         }
 
@@ -57,7 +57,7 @@
                 console.log("adding comment");
                 vm.newComment.date = Date.now();
                 bookmark.comments.push(vm.newComment);
-                vm.newComment = {};        
+                vm.newComment = {};
 
         }
 

@@ -1,12 +1,12 @@
 angular.module('linked-learning', ['ngRoute']);
 angular.module('linked-learning').config(Configuration);
-angular.module('linked-learning').factory(BookmarkFactory);
+angular.module('linked-learning').factory('BookmarkFactory', BookmarkFactory);
 
 function BookmarkFactory() {
     var fac = {};
     var newBookmark = {};
     var newComment = {};
-    
+
     fac.bookmarks = [];
 
     newComment.body = "Google is the best search engine EVER!";
@@ -28,7 +28,7 @@ function BookmarkFactory() {
     fac.bookmarks.push(newBookmark);
     newBookmark = {};
 
-    
+
     newBookmark.url = "www.github.com/";
     newBookmark.user = "Robot";
     newBookmark.description = "version tracking mastersite pro gold";
@@ -38,7 +38,7 @@ function BookmarkFactory() {
     newComment.body = "Github is super cool!";
     newComment.date = Date.now();
     newBookmark.comments.push(newComment);
-    
+
     newComment = {};
     fac.bookmarks.push(newBookmark);
     newBookmark = {};
