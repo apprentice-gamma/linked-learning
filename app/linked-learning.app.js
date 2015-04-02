@@ -20,19 +20,19 @@ function BookmarkFactory() {
     newBookmark.comments.push(newComment);
     newComment = {};
 
-    newBookmark.url = "www.google.com/";
+    newBookmark.url = "www.w3schools.com/";
     newBookmark.user = "Robot";
     newBookmark.description = "A search engine";
-    newBookmark.title = "Google!";
+    newBookmark.title = "W3 Schools";
     newBookmark.date = Date.now();
     fac.bookmarks.push(newBookmark);
     newBookmark = {};
 
 
-    newBookmark.url = "www.github.com/";
+    newBookmark.url = "www.detroitlabs.com/";
     newBookmark.user = "Robot";
     newBookmark.description = "version tracking mastersite pro gold";
-    newBookmark.title = "Git Hub!";
+    newBookmark.title = "Detroit Labs";
     newBookmark.date = Date.now();
     newBookmark.comments =[];
     newComment.body = "Github is super cool!";

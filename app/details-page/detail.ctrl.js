@@ -5,7 +5,7 @@ angular
 
 	function DetailController ($routeParams, BookmarkFactory){
 		var vm = this;
-		vm.bookmarks = BookmarkFactory;
+		vm.bookmarks = BookmarkFactory.bookmarks;
 
 		vm.bookmarkURL = $routeParams.bookmarkURL;
 		vm.iframeURL = "http://" + vm.bookmarkURL;
@@ -14,7 +14,6 @@ angular
 		//pull url from ^^^
 
 		vm.bookmark = {title: 'W3Schools', url: vm.iframeURL,};
-
 	}
 
 })();

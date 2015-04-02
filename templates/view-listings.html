@@ -12,7 +12,7 @@
 			</h3>
 		</div>
 		<div class="panel-body">
-			<a href={{bookmark.url}}><span class='glyphicon glyphicon glyphicon-bookmark'> {{bookmark.url}}</span></a>
+			<a ng-href="{{'#/' + bookmark.url}}"><span class='glyphicon glyphicon glyphicon-bookmark'> {{bookmark.url}}</span></a>
 			<p>{{bookmark.description}} </p>
 			<!-- <div class="panel panel-primary" ng-repeat="comment in bookmark.comments">
 					<div class="panel-body">{{comment.body}}  Date: {{comment.date | date}}</div>
