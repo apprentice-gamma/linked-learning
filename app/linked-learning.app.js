@@ -43,7 +43,7 @@ function BookmarkFactory() {
     fac.bookmarks.push(newBookmark);
     newBookmark = {};
 
-
+    fac.curIndex = 0;
     return fac;
 }
 

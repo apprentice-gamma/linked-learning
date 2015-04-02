@@ -45,12 +45,14 @@
 
         }
 
-        function loadComments(index, commentController) {
-             if(typeof vm.bookmarks[index].comments === "undefined"){
+        function loadComments(index, layoutController) {
+            if(typeof vm.bookmarks[index].comments === "undefined"){
                 vm.bookmarks[index].comments = [];
                 console.log("was undefined, but we fixed it!");
             }
-            commentController.existingComments = vm.bookmarks[index].comments;
+            //commentController.existingComments = vm.bookmarks[index].comments;
+            BookmarkFactory.curIndex = index;
+            layoutController.pageR ='comments';
         }
 
         function addComment(bookmark) {
