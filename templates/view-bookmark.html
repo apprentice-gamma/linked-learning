@@ -1,5 +1,6 @@
-<div class="col-md-12 column">&nbsp;</div>
+
 <div ng-controller="DetailController as detail">
+	{{detail.urlParameter}}
 	<div class='container-fluid'>
 		<div class='col-md-8'>
 			<div class="panel panel-primary">
@@ -12,7 +13,7 @@
 			</div>
 		</div>
 		<div class="col-md-4 column">
-			<div ng-include="view-comments.html"></div>
+			<div ng-include="'./templates/view-comments.html'"></div>
 		</div>
 	<div>
 </div>
