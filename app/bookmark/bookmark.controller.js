@@ -1,6 +1,6 @@
 (function() {
     angular
-        .module('bookmark')
+        .module('linked-learning')
         .controller('BookmarkController', BookmarkController);
 
     function BookmarkController() {
@@ -10,6 +10,11 @@
         vm.search = "";
         vm.addBookmark = addBookmark;
         vm.deleteBookmark = deleteBookmark;
+
+        vm.loadComments = loadComments;
+        vm.addComment = addComment;
+        vm.deleteComment = deleteComment;
+
         vm.newComment = {};
         vm.newBookmark = {};
         vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
@@ -53,7 +58,8 @@
                 console.log("adding bookmark");
                 vm.newBookmark.date = Date.now();
                 vm.bookmarks.push(vm.newBookmark);
-                vm.newBookmark = {};        
+                vm.newBookmark = {};
+                vm.newBookmark.comments = [];        
 
         }
 
@@ -61,6 +67,14 @@
             console.log("Removing bookmark at " + index);
             vm.bookmarks.splice(index, 1);
 
+        }
+
+        function loadComments(index, commentController) {
+             if(typeof vm.bookmarks[index].comments === "undefined"){
+                vm.bookmarks[index].comments = [];
+                console.log("was undefined, but we fixed it!");
+            }
+            commentController.existingComments = vm.bookmarks[index].comments;
         }
 
         function addComment(bookmark) {
