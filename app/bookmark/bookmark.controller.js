@@ -3,10 +3,10 @@
         .module('linked-learning')
         .controller('BookmarkController', BookmarkController);
 
-    function BookmarkController() {
+    function BookmarkController(BookmarkFactory) {
         var vm = this;
         vm.title = "Bookmark Controller Outside";
-        vm.bookmarks = [];
+        vm.bookmarks = BookmarkFactory.bookmarks;
         vm.search = "";
         vm.addBookmark = addBookmark;
         vm.deleteBookmark = deleteBookmark;
@@ -58,7 +58,7 @@
                 console.log("adding bookmark");
                 vm.newBookmark = vm.newBookmark.replace('https://', '');
                 vm.newBookmark = vm.newBookmark.replace('http://', '');
-                
+
                 vm.newBookmark.date = Date.now();
                 vm.bookmarks.push(vm.newBookmark);
                 vm.newBookmark = {};
