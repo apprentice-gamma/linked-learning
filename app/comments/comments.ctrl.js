@@ -3,27 +3,25 @@ angular
 	.controller("CommentsController", CommentsController);
 
 	// Comments array to emulate the array of comments in Bookmark
-	function CommentsController($scope, $routeParams, BookmarkFactory) {
+	function CommentsController($scope, $location, $routeParams, BookmarkFactory) {
 		var vm = this;
 		vm.addComment = addComment;
-		$scope.$watch(indexValue, indexChange);
-		vm.comment = {
-			body: "",
-			date: Date.now()
-		};
+		vm.comment = { body: "", date: Date.now() };
 
 		vm.currentBookmarkURL = $routeParams.bookmarkURL;
 		vm.existingComments = BookmarkFactory.bookmarks[BookmarkFactory.curIndex].comments;
 
-		// for (var i = 0; i < BookmarkFactory.bookmarks.length; i++) {
-		// 	if (vm.currentBookmarkURL === BookmarkFactory.bookmarks[i].url)
-		// 		vm.existingComments = BookmarkFactory.bookmarks[i].comments;
-		// }
+		$scope.$watch(indexValue, indexChange);
+		$scope.$watch(function(){
+		    return $location.path();
+		}, function(value){
+			console.log("ROUTE CHANGE");
 
+		    updateIndex($routeParams.bookmarkURL);
+		});
 		
 
 		/////////////////////////////////////////////
-
 		function addComment() {
 			vm.existingComments.push(vm.comment);
 			vm.comment = {
@@ -31,11 +29,23 @@ angular
 				date: Date.now()
 			};
 		}
+
 		/////////////////////////////////////////////
 		function updateIndex(url) {
+			console.log('UPDATE INDEX');
+			console.log(BookmarkFactory.bookmarks.length);
+			if(url.charAt(url.length - 1) !== '/') {
+				url += '/';
+			}
+
 			for (var i = 0; i < BookmarkFactory.bookmarks.length; i++) {
-				if (url === BookmarkFactory.bookmarks[i].url)
+				console.log('url: ', url);
+				console.log('bookmark:', BookmarkFactory.bookmarks[i].url);
+				if (url == BookmarkFactory.bookmarks[i].url) {
 					BookmarkFactory.curIndex = i;
+					console.log(i);
+					break;
+				}
 			}
 		}
 
