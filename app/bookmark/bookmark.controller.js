@@ -6,7 +6,6 @@
     function BookmarkController() {
         var vm = this;
         vm.title = "Bookmark Controller Outside";
-        //vm.bookmarks = BookmarkFactory.bookmarks;
         vm.bookmarks = [];
         vm.search = "";
         vm.addBookmark = addBookmark;
@@ -25,40 +24,13 @@
         ////////////////
 
         function activate(vm) {
-
-            vm.newComment.body = "Google is the best search engine EVER!";
-            vm.newComment.date = Date.now();
-            vm.newBookmark.comments =[];
-            vm.newBookmark.comments.push(vm.newComment);
-            vm.newComment = {};
-
-            vm.newComment.body = "Google is not the best search engine - bing is!";
-            vm.newComment.date = Date.now();
-            vm.newBookmark.comments.push(vm.newComment);
-            vm.newComment = {};
-
-            vm.newBookmark.url = "www.google.com/";
-            vm.newBookmark.user = "Robot";
-            vm.newBookmark.description = "A search engine";
-            vm.newBookmark.title = "Google!";
-            vm.newBookmark.date = Date.now();
-            vm.bookmarks.push(vm.newBookmark);
-            vm.newBookmark = {};
-
-            
-            vm.newBookmark.url = "www.github.com/";
-            vm.newBookmark.user = "Robot";
-            vm.newBookmark.description = "version tracking mastersite pro gold";
-            vm.newBookmark.title = "Git Hub!";
-            vm.newBookmark.date = Date.now();
-            vm.bookmarks.push(vm.newBookmark);
-            vm.newBookmark = {};
+            vm.bookmarks = BookmarkFactory.bookmarks;          
         }
 
         function addBookmark(isValid) {
                 console.log("adding bookmark");
-                vm.newBookmark = vm.newBookmark.replace('https://', '');
-                vm.newBookmark = vm.newBookmark.replace('http://', '');
+                vm.newBookmark.url = vm.newBookmark.url.replace('https://', '');
+                vm.newBookmark.url = vm.newBookmark.url.replace('http://', '');
 
                 vm.newBookmark.date = Date.now();
                 vm.bookmarks.push(vm.newBookmark);
