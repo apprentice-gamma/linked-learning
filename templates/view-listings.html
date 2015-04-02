@@ -1,4 +1,4 @@
-<div class="col-md-8 column">
+<div class="col-md-8 column"  ng-controller="BookmarkController as vmBookmark" >
 	<form role="form" class="form-inline">
 		<div class="form-group">
 			<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vmBookmark.search" size="50" />
@@ -14,9 +14,6 @@
 		<div class="panel-body">
 			<a ng-href="{{'#/' + bookmark.url}}"><span class='glyphicon glyphicon glyphicon-bookmark'> {{bookmark.url}}</span></a>
 			<p>{{bookmark.description}} </p>
-			<!-- <div class="panel panel-primary" ng-repeat="comment in bookmark.comments">
-					<div class="panel-body">{{comment.body}}  Date: {{comment.date | date}}</div>
-			</div> -->
 		</div>
 		<div class="panel-footer">
 			Added: {{bookmark.date | date}} by {{bookmark.user}}
@@ -31,7 +28,7 @@
 	</div>
 </div> <!-- column -->
 	<!-- RH -->
-<div class="col-md-4 column">
+<div class="col-md-4 column" >
 	<div ng-include src="'./templates/add-bookmark.html'" ng-if="vmLayout.pageR == 'add'"></div>
-	<div ng-include src="'./templates/view-comments.html'" ng-if="vmLayout.pageR == 'comments'"></div>
+	<div ng-include src="'./templates/view-comments.html'" ng-if="vmLayout.pageR == 'comments'" ng-controller="CommentsController as vmComments"></div>
 </div> <!-- column -->
