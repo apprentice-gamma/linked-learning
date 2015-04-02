@@ -5,8 +5,10 @@ angular
 
 	function DetailController ($routeParams){
 		var vm = this;
-		vm.urlParameter = $routeParams.bookmarkURL;
-		vm.bookmark = {title: 'W3Schools', url: "http://www.w3schools.com/"};
+		vm.bookmarkURL = $routeParams.bookmarkURL;
+		vm.iframeURL = "http://" + vm.bookmarkURL;
+
+		vm.bookmark = {title: 'W3Schools', url: vm.iframeURL,};
 
 	}
 

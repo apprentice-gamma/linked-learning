@@ -36,7 +36,7 @@
             vm.newBookmark.comments.push(vm.newComment);
             vm.newComment = {};
 
-            vm.newBookmark.url = "http://www.google.com/";
+            vm.newBookmark.url = "www.google.com/";
             vm.newBookmark.user = "Robot";
             vm.newBookmark.description = "A search engine";
             vm.newBookmark.title = "Google!";
@@ -45,7 +45,7 @@
             vm.newBookmark = {};
 
             
-            vm.newBookmark.url = "http://www.github.com/";
+            vm.newBookmark.url = "www.github.com/";
             vm.newBookmark.user = "Robot";
             vm.newBookmark.description = "version tracking mastersite pro gold";
             vm.newBookmark.title = "Git Hub!";
@@ -56,6 +56,9 @@
 
         function addBookmark(isValid) {
                 console.log("adding bookmark");
+                vm.newBookmark = vm.newBookmark.replace('https://', '');
+                vm.newBookmark = vm.newBookmark.replace('http://', '');
+                
                 vm.newBookmark.date = Date.now();
                 vm.bookmarks.push(vm.newBookmark);
                 vm.newBookmark = {};
