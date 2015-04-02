@@ -5,19 +5,19 @@ function Configuration($routeProvider) {
 	$routeProvider
   // route for the home page
     .when('/', {
-        templateUrl : 'pages/home.html',
+        templateUrl : 'templates/viewListings.html',
         controller  : 'mainController'
     })
 
     // route for the about page
-    .when('/about', {
-        templateUrl : 'pages/about.html',
+    .when('/bookmark', {
+        templateUrl : 'templates/viewBookmark.html',
         controller  : 'aboutController'
     })
 
     // route for the contact page
-    .when('/contact', {
-        templateUrl : 'pages/contact.html',
+    .when('/comment', {
+        templateUrl : 'templates/viewComments.html',
         controller  : 'contactController'
     });
 }
