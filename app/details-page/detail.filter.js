@@ -1,7 +1,7 @@
 (function(){
 
 angular
-  .module('app')
+  .module('linked-learning')
   .filter('trust', [
     '$sce',
     function($sce) {

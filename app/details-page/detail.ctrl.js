@@ -1,6 +1,6 @@
 (function(){
 angular
-	.module('app')
+	.module('linked-learning')
 	.controller('DetailController', DetailController);
 
 	function DetailController (){
