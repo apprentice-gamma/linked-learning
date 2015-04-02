@@ -13,9 +13,9 @@
 	<div class="panel-body">
 		<p><a href={{bookmark.url}}>{{bookmark.url}}</a></p>
 		<p>{{bookmark.description}} </p>
-		<div class="panel panel-primary" ng-repeat="comment in bookmark.comments">
+		<!-- <div class="panel panel-primary" ng-repeat="comment in bookmark.comments">
 			<div class="panel-body">{{comment.body}}  Date: {{comment.date | date}}</div>
-		</div>
+		</div> -->
 	</div>
 	<div class="panel-footer">
 		Added: {{bookmark.date | date}} by {{bookmark.user}}
@@ -25,7 +25,7 @@
 		</button>
 		&nbsp;&nbsp;
 		<button class="btn btn-info pull-right btn-xs" ng-click="vmBookmark.loadComments($index, vmComments)">
-			<span class="glyphicon glyphicon glyphicon-comment"></span>
+			<span class="glyphicon glyphicon glyphicon-comment"> ({{ bookmark.comments.length }})</span>
 		</button>
 	</div>
 </div>
