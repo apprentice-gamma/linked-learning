@@ -25,15 +25,17 @@
             vm.bookmarks = BookmarkFactory.bookmarks;
         }
 
-        function addBookmark(isValid) {
+        function addBookmark() {
                 console.log("adding bookmark");
                 vm.newBookmark.url = vm.newBookmark.url.replace('https://', '');
                 vm.newBookmark.url = vm.newBookmark.url.replace('http://', '');
 
                 vm.newBookmark.date = Date.now();
+                vm.newBookmark.comments = [];
+                
                 vm.bookmarks.push(vm.newBookmark);
                 vm.newBookmark = {};
-                vm.newBookmark.comments = [];
+                
         }
 
         function deleteBookmark(index) {
