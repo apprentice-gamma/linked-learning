@@ -3,11 +3,11 @@ angular.module('linked-learning').config(Configuration);
 angular.module('linked-learning').factory('BookmarkFactory', BookmarkFactory);
 
 function BookmarkFactory() {
-    var fac = {};
+    var factory = {};
     var newBookmark = {};
     var newComment = {};
 
-    fac.bookmarks = [];
+    factory.bookmarks = [];
 
     newComment.body = "Google is the best search engine EVER!";
     newComment.date = Date.now();
@@ -25,7 +25,7 @@ function BookmarkFactory() {
     newBookmark.description = "A search engine";
     newBookmark.title = "W3 Schools";
     newBookmark.date = Date.now();
-    fac.bookmarks.push(newBookmark);
+    factory.bookmarks.push(newBookmark);
     newBookmark = {};
 
 
@@ -40,11 +40,11 @@ function BookmarkFactory() {
     newBookmark.comments.push(newComment);
 
     newComment = {};
-    fac.bookmarks.push(newBookmark);
+    factory.bookmarks.push(newBookmark);
     newBookmark = {};
 
-    fac.curIndex = 0;
-    return fac;
+    factory.curIndex = 0;
+    return factory;
 }
 
 function Configuration($routeProvider) {
@@ -55,7 +55,6 @@ function Configuration($routeProvider) {
     })
     .when('/:bookmarkURL', {
         templateUrl : 'templates/view-bookmark.html',
-
     })
     .otherwise({
         redirectTo: '/',

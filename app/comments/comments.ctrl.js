@@ -6,6 +6,7 @@ angular
 	function CommentsController($scope, $location, $routeParams, BookmarkFactory) {
 		var vm = this;
 		vm.addComment = addComment;
+		vm.deleteComment = deleteComment
 		vm.comment = { body: "", date: Date.now() };
 
 		vm.currentBookmarkURL = $routeParams.bookmarkURL;
@@ -25,6 +26,12 @@ angular
 				date: Date.now()
 			};
 		}
+
+		function deleteComment(bookmark, index) {
+            console.log("Removing comments at " + index);
+            bookmark.comments.splice(index, 1);
+
+        }
 
 		function updateIndex(routeID) {
 			//This function is designed to update 

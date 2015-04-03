@@ -7,23 +7,22 @@
         var vm = this;
         vm.title = "Bookmark Controller Outside";
         vm.bookmarks = [];
-        vm.search = "";
-        vm.addBookmark = addBookmark;
-        vm.deleteBookmark = deleteBookmark;
-
-        vm.loadComments = loadComments;
-        vm.addComment = addComment;
-        vm.deleteComment = deleteComment;
-
         vm.newComment = {};
         vm.newBookmark = {};
+        vm.search = "";
+        
+        vm.addBookmark = addBookmark;
+        vm.deleteBookmark = deleteBookmark;
+        vm.loadComments = loadComments;
+
+        
         vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
 
-        activate(vm);
+        activate();
 
         ////////////////
 
-        function activate(vm) {
+        function activate() {
             vm.bookmarks = BookmarkFactory.bookmarks;
         }
 
@@ -51,20 +50,6 @@
 
             BookmarkFactory.curIndex = index;
             layoutController.pageR ='comments';
-        }
-
-        function addComment(bookmark) {
-                console.log("adding comment");
-                vm.newComment.date = Date.now();
-                bookmark.comments.push(vm.newComment);
-                vm.newComment = {};
-
-        }
-
-        function deleteComment(bookmark, index) {
-            console.log("Removing comments at " + index);
-            bookmark.comments.splice(index, 1);
-
         }
     }
 })();
