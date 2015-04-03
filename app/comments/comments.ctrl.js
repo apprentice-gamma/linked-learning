@@ -16,8 +16,8 @@ angular
 		//Set watches on BookmarkFactory.curIndex and $location.path()
 		// the __Value functions return the variable's value 
 		// the __Changed functions get called when the variables change. 
-		$scope.$watch(indexValue, indexChanged);
-		$scope.$watch(pathValue, pathChanged);
+		$scope.$watch(indexValue, indexChanged);		//Watches BookmarkFactory.curIndex
+		$scope.$watch(pathValue, pathChanged);			//Watches the path in the location bar
 		    		
 		/////////////////////////////////////////////
 		function addComment() {
@@ -49,7 +49,7 @@ angular
 				console.log('routeID: ', routeID);
 				console.log('bookmark:', BookmarkFactory.bookmarks[i].url);
 				
-				if (checkRouteID(routeID, BookmarkFactory.bookmarks[i].url)) {
+				if (routeIDMatchesStoredURL(routeID, BookmarkFactory.bookmarks[i].url)) {
 					BookmarkFactory.curIndex = i;
 					break;	//exit the loop when we find a match
 				}
@@ -60,11 +60,11 @@ angular
 			// check the URL string and see if it's got a trailing slash
 			// check the path to see if it's got a trailing slash
 			// make the two match. We want to try both ways.
-		function checkRouteID(routeID, url) {
-			var tempRouteID = routeID + '/';
-			console.log ('temp', tempRouteID, url === tempRouteID);
+		function routeIDMatchesStoredURL(routeID, url) {
+			var routeIDWithSlash = routeID + '/';
+			console.log ('temp', routeIDWithSlash, url === routeIDWithSlash);
 			console.log ('norm', url, routeID === url);
-			return ((routeID===url) || (tempRouteID === url));
+			return ((routeID===url) || (routeIDWithSlash === url));
 		}
 
 		/////////////////////////////////////////////
@@ -75,8 +75,8 @@ angular
 			return BookmarkFactory.curIndex;
 		}
 
-		function indexChanged(newValue) {
-			vm.existingComments = BookmarkFactory.bookmarks[newValue].comments;
+		function indexChanged(newIndex) {
+			vm.existingComments = BookmarkFactory.bookmarks[newIndex].comments;
 		}
 
 		function pathValue() {

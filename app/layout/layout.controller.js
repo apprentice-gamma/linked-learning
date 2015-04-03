@@ -20,6 +20,7 @@
         function switchToAddBookmark() {
             vm.pageR = 'add';
         }
+        
         function returnToListings() {
             $location.url('/');
         }

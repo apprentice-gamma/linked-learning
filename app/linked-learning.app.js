@@ -52,15 +52,16 @@ function prepopulate(factory) {
 
 function Configuration($routeProvider) {
 	$routeProvider
+    var home = '/';
 
-    .when('/', {
+    .when(home, {
         templateUrl : 'templates/view-listings.html',
     })
     .when('/:bookmarkURL', {
         templateUrl : 'templates/view-bookmark.html',
     })
     .otherwise({
-        redirectTo: '/',
+        redirectTo: home,
     });
 }
 
