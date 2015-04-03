@@ -3,13 +3,13 @@
         .module('linked-learning')
         .controller('LayoutController', Controller);
 
-    function Controller() {
+    function Controller($scope, $location, BookmarkFactory) {
         var vm = this;
         vm.title = 'Layout Controller';
-        vm.pageL = 'listings';
-        vm.pageR = 'add';
-        vm.swapRightCol = swapRightCol;
-
+        vm.pageR = 'add';   //values should be 'add' or 'comments'
+        vm.switchToAddBookmark = switchToAddBookmark;
+        vm.returnToListings = returnToListings;
+      
         activate();
 
         ////////////////
@@ -17,14 +17,13 @@
         function activate() {
         }
 
-        function swapRightCol() {
-        	if (vm.pageR === 'add') {
-        		vm.pageR ='comments';
-        	} else if (vm.pageR === 'comments') {
-        		vm.pageR = 'add';
-        	} else {
-        		console.log('ERROR IN RH COL SWAP');
-        	}
+        function switchToAddBookmark() {
+            vm.pageR = 'add';
         }
+
+        function returnToListings() {
+            $location.url('/');
+        }
+
     }
 })();

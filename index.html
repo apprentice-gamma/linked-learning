@@ -8,24 +8,22 @@
 		<link rel="stylesheet" href="./css/validation.css"/>
 	</head>
 	<body ng-app="linked-learning" ng-controller="LayoutController as vmLayout" >
-		<div class="container" ng-controller="BookmarkController as vmBookmark" >
-			<div class="row clearfix" ng-controller="CommentsController as vmComments">
+		<p>{{vmLayout.$routeParams.bookmarkURL}}</p>
+		<div class="container">
+			<div class="row clearfix">
 				<div class="col-md-12 column">
 					<div ng-include src="'./templates/navbar.html'"></div>
 				</div>
-				<div class="col-md-8 column">
-					<div ng-include src="'./templates/view-listings.html'" ng-if="vmLayout.pageL == 'listings'"></div>	
-				</div> <!-- column -->
-					<!-- RH -->
-				<div class="col-md-4 column">
-					<div ng-include src="'./templates/add-bookmark.html'" ng-if="vmLayout.pageR == 'add'"></div>
-					<div ng-include src="'./templates/view-comments.html'" ng-if="vmLayout.pageR == 'comments'"></div>
-				</div> <!-- column -->
-			</div> <!-- row clearfix -->
+
+				<div ng-view></div>
+
+			 </div> <!--row clearfix -->
 		</div> <!-- container -->
+
+		<!-- Angular Scripts -->
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
-
+		<!-- Linked-Learning App -->
 		<script src="./app/linked-learning.app.js"></script>
 		<script src="./app/bookmark/bookmark.controller.js"></script>
 		<script src="./app/layout/layout.controller.js"></script>
