@@ -1,31 +1,36 @@
-<form role="form" class="form-inline">
-	<div class="form-group">
-		<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vmBookmark.search" size="50" />
-	</div>
-	<div class="pull-right">{{(vmBookmark.bookmarks|filter: vmBookmark.search).length}} bookmarks of {{vmBookmark.bookmarks.length}}</div>
-</form> <br/>
-<div class="panel panel-primary" ng-repeat="bookmark in vmBookmark.bookmarks | filter: vmBookmark.search">
-	<div class="panel-heading">
-		<h3 class="panel-title">
-		{{bookmark.title}}
-		</h3>
-	</div>
-	<div class="panel-body">
-		<p><a href={{bookmark.url}}>{{bookmark.url}}</a></p>
-		<p>{{bookmark.description}} </p>
-		<!-- <div class="panel panel-primary" ng-repeat="comment in bookmark.comments">
-			<div class="panel-body">{{comment.body}}  Date: {{comment.date | date}}</div>
-		</div> -->
-	</div>
-	<div class="panel-footer">
-		Added: {{bookmark.date | date}} by {{bookmark.user}}
-
-		<button class="btn btn-danger pull-right btn-xs" ng-click="vmBookmark.deleteBookmark($index)">
+<div ng-controller="BookmarkController as vmBookmark">
+<div class="col-md-8 column">
+	<form role="form" class="form-inline">
+		<div class="form-group">
+			<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vmBookmark.search" size="50" />
+		</div>
+		<div class="pull-right">{{(vmBookmark.bookmarks|filter: vmBookmark.search).length}} bookmarks of {{vmBookmark.bookmarks.length}}</div>
+	</form> <br/>
+	<div class="panel panel-primary" ng-repeat="bookmark in vmBookmark.bookmarks | filter: vmBookmark.search">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+			{{bookmark.title}}
+			</h3>
+		</div>
+		<div class="panel-body">
+			<a ng-href="{{'#/' + bookmark.url}}"><span class='glyphicon glyphicon glyphicon-bookmark'> {{bookmark.url}}</span></a>
+			<p>{{bookmark.description}} </p>
+		</div>
+		<div class="panel-footer">
+			Added: {{bookmark.date | date}} by {{bookmark.user}}
+			<button class="btn btn-danger pull-right btn-xs" ng-click="vmBookmark.deleteBookmark($index)">
 			<span class="glyphicon glyphicon-trash"></span>
-		</button>
-		&nbsp;&nbsp;
-		<button class="btn btn-info pull-right btn-xs" ng-click="vmBookmark.loadComments($index, vmComments)">
+			</button>
+			&nbsp;&nbsp;
+			<button class="btn btn-info pull-right btn-xs" ng-click="vmBookmark.loadComments($index, vmLayout)">
 			<span class="glyphicon glyphicon glyphicon-comment"> ({{ bookmark.comments.length }})</span>
-		</button>
+			</button>
+		</div>
 	</div>
+</div> <!-- column -->
+	<!-- RH -->
+<div class="col-md-4 column" >
+	<div ng-include src="'./templates/add-bookmark.html'" ng-if="vmLayout.pageR == 'add'"></div>
+	<div ng-include src="'./templates/view-comments.html'" ng-if="vmLayout.pageR == 'comments'" ng-controller="CommentsController as vmComments"></div>
+</div> <!-- column -->
 </div>
