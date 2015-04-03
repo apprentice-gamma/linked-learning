@@ -49,7 +49,7 @@ function BookmarkFactory() {
 
 function Configuration($routeProvider) {
 	$routeProvider
-  // route for the home page
+
     .when('/', {
         templateUrl : 'templates/view-listings.html',
     })

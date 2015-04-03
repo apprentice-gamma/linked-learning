@@ -36,13 +36,11 @@
                 vm.bookmarks.push(vm.newBookmark);
                 vm.newBookmark = {};
                 vm.newBookmark.comments = [];
-
         }
 
         function deleteBookmark(index) {
             console.log("Removing bookmark at " + index);
             vm.bookmarks.splice(index, 1);
-
         }
 
         function loadComments(index, layoutController) {
@@ -50,7 +48,7 @@
                 vm.bookmarks[index].comments = [];
                 console.log("was undefined, but we fixed it!");
             }
-            //commentController.existingComments = vm.bookmarks[index].comments;
+
             BookmarkFactory.curIndex = index;
             layoutController.pageR ='comments';
         }

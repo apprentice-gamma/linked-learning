@@ -8,7 +8,7 @@
         vm.title = 'Layout Controller';
         vm.pageL = 'listings';
         vm.pageR = 'add';
-        vm.swapRightCol = swapRightCol;
+        vm.switchToAddBookmark = switchToAddBookmark;
 
         activate();
 
@@ -17,7 +17,7 @@
         function activate() {
         }
 
-        function swapRightCol() {
+        function switchToAddBookmark() {
             vm.pageR = 'add';
         }
     }
