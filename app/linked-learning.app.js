@@ -4,10 +4,17 @@ angular.module('linked-learning').factory('BookmarkFactory', BookmarkFactory);
 
 function BookmarkFactory() {
     var factory = {};
+    factory.bookmarks = [];
+    factory.curIndex = 0;
+    
+    prepopulate(factory);
+
+    return factory;
+}
+
+function prepopulate(factory) {
     var newBookmark = {};
     var newComment = {};
-
-    factory.bookmarks = [];
 
     newComment.body = "Google is the best search engine EVER!";
     newComment.date = Date.now();
@@ -28,7 +35,6 @@ function BookmarkFactory() {
     factory.bookmarks.push(newBookmark);
     newBookmark = {};
 
-
     newBookmark.url = "www.detroitlabs.com/";
     newBookmark.user = "Robot";
     newBookmark.description = "version tracking mastersite pro gold";
@@ -42,9 +48,6 @@ function BookmarkFactory() {
     newComment = {};
     factory.bookmarks.push(newBookmark);
     newBookmark = {};
-
-    factory.curIndex = 0;
-    return factory;
 }
 
 function Configuration($routeProvider) {
