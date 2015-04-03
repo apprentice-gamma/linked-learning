@@ -1,12 +1,12 @@
 (function(){
-angular
-	.module('linked-learning')
-	.controller('DetailController', DetailController);
+	angular
+		.module('linked-learning')
+		.controller('DetailController', DetailController);
 
-	function DetailController (){
-		var vm = this;
-		vm.bookmark = {title: 'W3Schools', url: "http://www.w3schools.com/"};
-
-	}
-
+		function DetailController ($routeParams, BookmarkFactory){
+			var vm = this;
+			vm.urlID = $routeParams.bookmarkURL;
+			vm.bookmark = BookmarkFactory.bookmarks[BookmarkFactory.curIndex];
+			vm.iframeURL = "http://" + vm.bookmark.url;
+		}
 })();
