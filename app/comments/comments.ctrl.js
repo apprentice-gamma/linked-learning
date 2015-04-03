@@ -5,9 +5,10 @@ angular
 	// Comments array to emulate the array of comments in Bookmark
 	function CommentsController($scope, $location, $routeParams, BookmarkFactory) {
 		var vm = this;
-		vm.addComment = addComment;
-		vm.deleteComment = deleteComment
 		vm.comment = { body: "", date: Date.now() };
+
+		vm.addComment = addComment;
+		vm.deleteComment = deleteComment;
 
 		vm.currentBookmarkURL = $routeParams.bookmarkURL;
 		vm.existingComments = BookmarkFactory.bookmarks[BookmarkFactory.curIndex].comments;

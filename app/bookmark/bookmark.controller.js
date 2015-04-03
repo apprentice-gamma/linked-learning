@@ -6,6 +6,8 @@
     function BookmarkController(BookmarkFactory) {
         var vm = this;
         vm.title = "Bookmark Controller Outside";
+        vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
+
         vm.bookmarks = [];
         vm.newComment = {};
         vm.newBookmark = {};
@@ -14,9 +16,6 @@
         vm.addBookmark = addBookmark;
         vm.deleteBookmark = deleteBookmark;
         vm.loadComments = loadComments;
-
-        
-        vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
 
         activate();
 

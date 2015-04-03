@@ -3,12 +3,12 @@
         .module('linked-learning')
         .controller('LayoutController', Controller);
 
-    function Controller() {
+    function Controller($location) {
         var vm = this;
         vm.title = 'Layout Controller';
-        vm.pageL = 'listings';
-        vm.pageR = 'add';
+        vm.pageR = 'add';   //values should be 'add' or 'comments'
         vm.switchToAddBookmark = switchToAddBookmark;
+        vm.returnToListings = returnToListings;
 
         activate();
 
@@ -19,6 +19,9 @@
 
         function switchToAddBookmark() {
             vm.pageR = 'add';
+        }
+        function returnToListings() {
+            $location.url('/');
         }
     }
 })();
