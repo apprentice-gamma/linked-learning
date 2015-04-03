@@ -51,9 +51,8 @@ function prepopulate(factory) {
 }
 
 function Configuration($routeProvider) {
-	$routeProvider
     var home = '/';
-
+	$routeProvider
     .when(home, {
         templateUrl : 'templates/view-listings.html',
     })

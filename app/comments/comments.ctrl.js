@@ -42,12 +42,12 @@ angular
 			// Because we're also watching the curIndex property
 			// we don't need to update the existingComments object here.
 
-			console.log('UPDATE INDEX');
-			console.log(BookmarkFactory.bookmarks.length);
+			// console.log('UPDATE INDEX');
+			// console.log(BookmarkFactory.bookmarks.length);
 			
 			for (var i = 0; i < BookmarkFactory.bookmarks.length; i++) {
-				console.log('routeID: ', routeID);
-				console.log('bookmark:', BookmarkFactory.bookmarks[i].url);
+				// console.log('routeID: ', routeID);
+				// console.log('bookmark:', BookmarkFactory.bookmarks[i].url);
 				
 				if (routeIDMatchesStoredURL(routeID, BookmarkFactory.bookmarks[i].url)) {
 					BookmarkFactory.curIndex = i;
@@ -62,8 +62,8 @@ angular
 			// make the two match. We want to try both ways.
 		function routeIDMatchesStoredURL(routeID, url) {
 			var routeIDWithSlash = routeID + '/';
-			console.log ('temp', routeIDWithSlash, url === routeIDWithSlash);
-			console.log ('norm', url, routeID === url);
+			//console.log ('temp', routeIDWithSlash, url === routeIDWithSlash);
+			//console.log ('norm', url, routeID === url);
 			return ((routeID===url) || (routeIDWithSlash === url));
 		}
 
@@ -76,6 +76,7 @@ angular
 		}
 
 		function indexChanged(newIndex) {
+			
 			vm.existingComments = BookmarkFactory.bookmarks[newIndex].comments;
 		}
 
@@ -84,7 +85,7 @@ angular
 		}
 
 		function pathChanged(newValue) {
-			console.log("ROUTE CHANGE");
+			//console.log("ROUTE CHANGE");
 		    updateIndex($routeParams.bookmarkURL);
 		}
 
