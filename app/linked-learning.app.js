@@ -1,4 +1,4 @@
-angular.module('linked-learning', ['ngRoute', 'googleplus']);
+angular.module('linked-learning', ['ngRoute',  'ngCookies', 'googleplus']);
 angular.module('linked-learning').config(Configuration);
 
 function Configuration($routeProvider, GooglePlusProvider) {
