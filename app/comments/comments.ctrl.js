@@ -79,6 +79,7 @@
 		function indexChanged(newIndex) {
 			
 			vm.existingComments = BookmarkFactory.bookmarks[newIndex].comments;
+			vm.currentTouchedURL = BookmarkFactory.bookmarks[newIndex].url;
 		}
 
 		function pathValue() {
