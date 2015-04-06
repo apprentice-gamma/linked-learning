@@ -1,4 +1,4 @@
-angular
+ 	angular
 	.module('linked-learning')
 	.controller("CommentsController", CommentsController);
 
@@ -12,6 +12,7 @@ angular
 
 		vm.currentBookmarkURL = $routeParams.bookmarkURL;
 		vm.existingComments = BookmarkFactory.bookmarks[BookmarkFactory.curIndex].comments;
+		vm.currentTouchedURL = BookmarkFactory.bookmarks[BookmarkFactory.curIndex].url;
 
 		//Set watches on BookmarkFactory.curIndex and $location.path()
 		// the __Value functions return the variable's value 
@@ -78,6 +79,7 @@ angular
 		function indexChanged(newIndex) {
 			
 			vm.existingComments = BookmarkFactory.bookmarks[newIndex].comments;
+			vm.currentTouchedURL = BookmarkFactory.bookmarks[newIndex].url;
 		}
 
 		function pathValue() {
