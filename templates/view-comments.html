@@ -1,4 +1,4 @@
-<div class="row">
+<div ng-hide="!vmComments.currentBookmarkURL" class="row">
 	<div class="panel panel-primary">
 		<div class="panel-heading">
 			<h3 class="panel-title">Comment</h3>
@@ -22,6 +22,6 @@
 			<strong>Placeholder for user's name.</strong> {{comment.date | date}}<br />
 			{{comment.body}}
 		</p>
-		<p>Test {{vmComments.currentBookmarkURL}}</p>
+		<p>Test{{vmComments.currentBookmarkURL}}1</p>
 	</div>
 </div>
