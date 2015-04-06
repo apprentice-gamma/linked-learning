@@ -1,4 +1,4 @@
-angular.module('linked-learning', ['ngRoute']);
+angular.module('linked-learning', ['ngRoute', 'googleplus']);
 angular.module('linked-learning').config(Configuration);
 angular.module('linked-learning').factory('BookmarkFactory', BookmarkFactory);
 
@@ -50,7 +50,7 @@ function prepopulate(factory) {
     newBookmark = {};
 }
 
-function Configuration($routeProvider) {
+function Configuration($routeProvider, GooglePlusProvider) {
     var home = '/';
 	$routeProvider
     .when(home, {
@@ -62,5 +62,9 @@ function Configuration($routeProvider) {
     .otherwise({
         redirectTo: home,
     });
-}
 
+    GooglePlusProvider.init({
+           clientId: '321395475453-f1iqbdeui513m8fi8ctkar5icg40644j.apps.googleusercontent.com',
+           apiKey: 'AIzaSyDLM0BzM_-HXaQhCEQxogLFAw3z4jM--3w'
+         });
+}
