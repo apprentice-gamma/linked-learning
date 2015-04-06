@@ -16,3 +16,15 @@ angular
                 });
             };
         }]);
+
+angular
+	.module('linked-learning')
+	.controller('CookieControl', ['$scope', '$cookies','$cookieStore', CookieCTRL]);
+
+	function CookieCTRL($scope, $cookies, $cookieStore) {
+		$cookies.userName = 'Sandeep';
+  		$scope.platformCookie = $cookies.userName;
+  		$cookieStore.put('fruit','Apple');
+  		$cookieStore.put('flower','Rose');
+  		$scope.myFruit= $cookieStore.get('fruit');
+	}
