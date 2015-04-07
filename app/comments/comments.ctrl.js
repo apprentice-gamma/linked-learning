@@ -20,6 +20,7 @@
 		vm.getBookmarks = function () {
         	BookmarkFactory.getBookmarks()
             	.success(function (data) {
+            		vm.bookmarks = data;
                 	vm.existingComments = data[BookmarkFactory.curIndex].comments;
                 	vm.currentTouchedURL = data[BookmarkFactory.curIndex].url;  
             	});
@@ -39,8 +40,8 @@
 		//Set watches on BookmarkFactory.curIndex and $location.path()
 		// the __Value functions return the variable's value 
 		// the __Changed functions get called when the variables change. 
-		//$scope.$watch(indexValue, indexChanged);		//Watches BookmarkFactory.curIndex
-		//$scope.$watch(pathValue, pathChanged);			//Watches the path in the location bar
+		$scope.$watch(indexValue, indexChanged);		//Watches BookmarkFactory.curIndex
+		$scope.$watch(pathValue, pathChanged);			//Watches the path in the location bar
 		    		
 		/////////////////////////////////////////////
 		function addComment() {
@@ -98,11 +99,11 @@
 			return BookmarkFactory.curIndex;
 		}
 
-		// function indexChanged(newIndex) {
+		function indexChanged(newIndex) {
 			
-		// 	vm.existingComments = BookmarkFactory.bookmarks[newIndex].comments;
-		// 	vm.currentTouchedURL = BookmarkFactory.bookmarks[newIndex].url;
-		// }
+			vm.existingComments = vm.bookmarks[newIndex].comments;
+			vm.currentTouchedURL = vm.bookmarks[newIndex].url;
+		}
 
 		function pathValue() {
 			return $location.path();
