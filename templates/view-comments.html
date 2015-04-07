@@ -18,13 +18,13 @@
 </div>
 <div ng-show="!vmComments.currentBookmarkURL" class='row'>
 	<h3>Comments</h3>
-	<h4>{{vmComments.currentTouchedURL}}</h4>
+	<h4>{{vmComments.currentTouchedURL}} </h4>
 </div>
 <div class="row">
 	<div ng-repeat="comment in vmComments.existingComments">
 		<p>
 			<strong>Placeholder for user's name.</strong> {{comment.date | date}}<br />
-			{{comment.body}}
+			{{comment.text}}
 		</p>
 	</div>
 </div>
