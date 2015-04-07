@@ -17,13 +17,21 @@
         vm.deleteBookmark = deleteBookmark;
         vm.loadComments = loadComments;
 
-        activate();
+        // activate();
 
         ////////////////
 
-        function activate() {
-            vm.bookmarks = BookmarkFactory.bookmarks;
+        // function activate() {
+        //     vm.bookmarks = BookmarkFactory.bookmarks;
+        // }
+
+        vm.getBookmarks = function () {
+        BookmarkFactory.getBookmarks()
+            .success(function (data) {
+                vm.bookmarks = data;   
+            });
         }
+        vm.getBookmarks();
 
         function addBookmark() {
                 console.log("adding bookmark");

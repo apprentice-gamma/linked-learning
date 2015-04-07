@@ -2,12 +2,18 @@ angular.module('linked-learning', ['ngRoute']);
 angular.module('linked-learning').config(Configuration);
 angular.module('linked-learning').factory('BookmarkFactory', BookmarkFactory);
 
-function BookmarkFactory() {
+function BookmarkFactory($http) {
+    var url = 'https://project1-backend.herokuapp.com/api/bookmarks';
     var factory = {};
-    factory.bookmarks = [];
+    factory.getBookmarks = function(){
+        return $http.get(url);
+    };
+    factory.addBookmark = function(bookmark){
+        return $http.post(url, bookmark)
+    };;
     factory.curIndex = 0;
-    
-    prepopulate(factory);
+
+    // prepopulate(factory);
 
     return factory;
 }
