@@ -4,6 +4,7 @@ angular
 
 function GoogleCTRL($scope, GooglePlus) {
     $scope.user = {};
+
     $scope.login = function() {
         GooglePlus.login().then(function(authResult) {
             console.log(authResult);
@@ -47,20 +48,24 @@ function CookieCTRL($scope, $cookies, $cookieStore) {
     if ($cookies.fruit)
         $scope.myFruit = $cookieStore.get('fruit');
 
+    if ($cookies.name)
+    	$scope.name = $cookieStore.get('name');
+
     //$cookieStore.remove('fruit');
 
-    $scope.$on('LOGGED_IN_WITH_GOOGLE', function(event, data) {
+    $scope.$on('LOGGED_IN_WITH_GOOGLE', function(event, userData) {
         $scope.curtime = new Date();
         //$cookiestore.put('TEST', 'TO EXPIRE', {expires: new Date($scope.curtime.getTime() + 1.5*60000)});
-        $scope.user = data;
+        $scope.user = userData;
 
         $cookieStore.put('fruit', 'Apple');
         $cookieStore.put('flower', 'Rose');
         $cookieStore.put('name', $scope.user.name);
 
         $scope.myFruit = $cookieStore.get('fruit');
-        //$scope.name = $cookieStore.get('name');
-        $scope.name = $cookies.userName;
+        
+        $scope.name = $cookieStore.get('name');
+        //$scope.name = $cookies.name;
     });
 
     $scope.$on('LOGGED_OUT', function(event, data) {
