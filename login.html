@@ -2,18 +2,19 @@
 <html>
   <head>
     <title>Google Login Test</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-cookies.js"></script>
   </head>
   <body ng-app="linked-learning" ng-controller="AuthCtrl">
     <a href="javascript:void(0);" ng-click="login()">Login with Google Plus</a>
+    <a href="javascript:void(0);" ng-click="logout()">Logout</a>
     <p>{{user.name}}</p>
     <div ng-controller="CookieControl">
       <p>{{myFruit}}</p>
       <p>{{name}}</p>    
     </div>
-    <script src="./app/angular-google-plus.min.js"></script>
+    <script src="./app/angular-google-plus.js"></script>
     <script src="./app/linked-learning.app.js"></script>
     <script src="./app/user/user.controller.js"></script>
     <script src="./app/bookmark/bookmark.controller.js"></script>
