@@ -12,9 +12,8 @@
 	<body ng-app="linked-learning" ng-controller="LayoutController as vmLayout" >
 		<p>{{vmLayout.$routeParams.bookmarkURL}}</p>
 		<div class="container" ng-controller="AuthCtrl">
-		    <a href="javascript:void(0);" ng-click="logout()">Logout</a>
 		    <div ng-controller="CookieControl">
-		      <p>{{name}}</p>
+		      <!-- <p>{{name}}</p> -->
 		      <modal-dialog show='modalShown' width='550px'>
 		        <img src="./images/logo.jpg" alt="Linked Learning Collaborative Bookmarks"  class="img-reponsive center-block" />
 		        <br />
