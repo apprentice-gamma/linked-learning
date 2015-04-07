@@ -42,6 +42,10 @@ angular
 function CookieCTRL($scope, $cookies, $cookieStore) {
     $scope.myFruit = 'Banana';
     $scope.name = 'NOT LOGGED IN';
+    $scope.modalShown = true;
+    $scope.toggleModal = function() {
+        $scope.modalShown = !$scope.modalShown;
+    };
 
     // if ($cookieStore.get('fruit'))
     // 	$scope.myFruit = $cookieStore.get('fruit');
@@ -57,18 +61,21 @@ function CookieCTRL($scope, $cookies, $cookieStore) {
         $scope.curtime = new Date();
         //$cookiestore.put('TEST', 'TO EXPIRE', {expires: new Date($scope.curtime.getTime() + 1.5*60000)});
         $scope.user = userData;
+        $scope.modalShown = false;
 
         $cookieStore.put('fruit', 'Apple');
         $cookieStore.put('flower', 'Rose');
         $cookieStore.put('name', $scope.user.name);
 
         $scope.myFruit = $cookieStore.get('fruit');
-        
+
         $scope.name = $cookieStore.get('name');
         //$scope.name = $cookies.name;
     });
 
     $scope.$on('LOGGED_OUT', function(event, data) {
+        $scope.modalShown = true;
+
         $cookieStore.remove('name');
         $cookieStore.remove('fruit');
         $cookieStore.remove('flower');
