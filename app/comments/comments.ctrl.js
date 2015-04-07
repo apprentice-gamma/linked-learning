@@ -13,10 +13,7 @@
 		vm.existingComments = [];
 		vm.currentTouchedURL;
 
-		BookmarkFactory.getBookmarks().then(function(promise){
-			vm.bookmarks = promise;
-		});
-
+		
 		vm.getBookmarks = function () {
         	BookmarkFactory.getBookmarks()
             	.success(function (data) {
@@ -28,8 +25,7 @@
         vm.getBookmarks();
         
 
-		// vm.bookmarks = vm.getBookmarks();
-		console.log(vm.bookmarks);
+		
 		vm.currentBookmarkURL = $routeParams.bookmarkURL;
 		// vm.existingComments = vm.bookmarks[BookmarkFactory.curIndex].comments;
 		// vm.currentTouchedURL = vm.bookmarks[BookmarkFactory.curIndex].url;
@@ -69,7 +65,7 @@
 			// console.log('UPDATE INDEX');
 			// console.log(BookmarkFactory.bookmarks.length);
 			
-			for (var i = 0; i < BookmarkFactory.bookmarks.length; i++) {
+			for (var i = 0; i < vm.bookmarks; i++) {
 				// console.log('routeID: ', routeID);
 				// console.log('bookmark:', BookmarkFactory.bookmarks[i].url);
 				
@@ -100,9 +96,8 @@
 		}
 
 		function indexChanged(newIndex) {
-			
-			vm.existingComments = vm.bookmarks[newIndex].comments;
 			vm.currentTouchedURL = vm.bookmarks[newIndex].url;
+			vm.existingComments = vm.bookmarks[newIndex].comments;
 		}
 
 		function pathValue() {

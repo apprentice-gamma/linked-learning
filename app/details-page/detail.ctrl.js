@@ -6,8 +6,20 @@
 		function DetailController ($scope, $location, $routeParams, BookmarkFactory){
 			var vm = this;
 			vm.urlID = $routeParams.bookmarkURL;
-			vm.bookmark = BookmarkFactory.bookmarks[BookmarkFactory.curIndex];
-			vm.iframeURL = "http://" + vm.bookmark.url;
+			vm.bookmark; //= BookmarkFactory.bookmarks[BookmarkFactory.curIndex];
+			vm.iframeURL = "http://" + $routeParams.bookmarkURL;
+			vm.bookmarks = [];
+
+			vm.getBookmarks = function () {
+        	BookmarkFactory.getBookmarks()
+            	.success(function (data) {
+            		vm.bookmarks = data;
+            		vm.bookmark = data[BookmarkFactory.curIndex];
+            		vm.bookmark.url = data[BookmarkFactory.curIndex].url;
+            		// vm.iframeUrl = "http://" + data[BookmarkFactory.curIndex].url;    	
+            	});
+        	}
+        	vm.getBookmarks();
 
 	        //Set watches on BookmarkFactory.curIndex and $location.path()
 	        // the __Value functions return the variable's value 
@@ -24,13 +36,13 @@
 	            // we don't need to update the existingComments object here.
 
 	            console.log('UPDATE INDEX');
-	            console.log(BookmarkFactory.bookmarks.length);
+	            // console.log(BookmarkFactory.bookmarks.length);
 	            
-	            for (var i = 0; i < BookmarkFactory.bookmarks.length; i++) {
+	            for (var i = 0; i < vm.bookmarks.length; i++) {
 	                console.log('routeID: ', routeID);
-	                console.log('bookmark url:', BookmarkFactory.bookmarks[i].url);
+	                console.log('bookmark url:', vm.bookmarks[i].url);
 	                
-	                if (routeIDMatchesStoredURL(routeID, BookmarkFactory.bookmarks[i].url)) {
+	                if (routeIDMatchesStoredURL(routeID, vm.bookmarks[i].url)) {
 	                    BookmarkFactory.curIndex = i;
 	                    console.log("TEST: MATCH FOUND");
 	                    break;  //exit the loop when we find a match
@@ -62,7 +74,7 @@
 
 	        function indexChanged(newIndex) {
 	            console.log('TEST: INDEX CHANGED', newIndex);
-	            vm.bookmark = BookmarkFactory.bookmarks[newIndex];
+	            vm.bookmark = vm.bookmarks[newIndex];
 				vm.iframeURL = "http://" + vm.bookmark.url;
 	        }
 
