@@ -21,14 +21,14 @@ function GoogleCTRL($scope, GooglePlus) {
     $scope.logout = logout;
 
     function logout() {
+        console.log("LOGOUT STAGE 1: COOKIES");
+        $scope.$broadcast('LOGGED_OUT', $scope.user);
     	GooglePlus.logout().then(function() {
     		GooglePlus.getUser().then(function(user) {
-    			console.log('LO:', user);
-
+                console.log("LOGOUT STAGE 2: GOOGLE");
     		}, function(err) {
     			console.log('no user');
     		});
-     		$scope.$broadcast('LOGGED_OUT',$scope.user );
         }, function(err) {
             console.log(err);
         });
@@ -40,45 +40,28 @@ angular
     .controller('CookieControl', ['$scope', '$cookies', '$cookieStore', CookieCTRL]);
 
 function CookieCTRL($scope, $cookies, $cookieStore) {
-    $scope.myFruit = 'Banana';
     $scope.name = 'NOT LOGGED IN';
     $scope.modalShown = true;
     $scope.toggleModal = function() {
         $scope.modalShown = !$scope.modalShown;
     };
 
-    // if ($cookieStore.get('fruit'))
-    // 	$scope.myFruit = $cookieStore.get('fruit');
-    if ($cookies.fruit)
-        $scope.myFruit = $cookieStore.get('fruit');
-
-    if ($cookies.name)
+    if ($cookieStore.get('name') !== undefined ) {
+        $scope.toggleModal();
     	$scope.name = $cookieStore.get('name');
-
-    //$cookieStore.remove('fruit');
+    }
 
     $scope.$on('LOGGED_IN_WITH_GOOGLE', function(event, userData) {
-        $scope.curtime = new Date();
-        //$cookiestore.put('TEST', 'TO EXPIRE', {expires: new Date($scope.curtime.getTime() + 1.5*60000)});
         $scope.user = userData;
         $scope.modalShown = false;
 
-        $cookieStore.put('fruit', 'Apple');
-        $cookieStore.put('flower', 'Rose');
         $cookieStore.put('name', $scope.user.name);
-
-        $scope.myFruit = $cookieStore.get('fruit');
-
         $scope.name = $cookieStore.get('name');
-        //$scope.name = $cookies.name;
     });
 
     $scope.$on('LOGGED_OUT', function(event, data) {
+        console.log("LOGGING OUT");
         $scope.modalShown = true;
-
         $cookieStore.remove('name');
-        $cookieStore.remove('fruit');
-        $cookieStore.remove('flower');
-        console.log('Logging Out', data);
     });
 }
