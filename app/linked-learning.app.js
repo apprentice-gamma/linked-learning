@@ -1,4 +1,4 @@
-angular.module('linked-learning', ['ngRoute',  'ngCookies', 'googleplus']);
+angular.module('linked-learning', ['ngRoute',  'ngCookies', 'ui.bootstrap', 'googleplus']);
 angular.module('linked-learning').config(Configuration);
 angular.module('linked-learning').factory('BookmarkFactory', BookmarkFactory);
 
