@@ -4,7 +4,7 @@
 	<div class='container-fluid'>
 		<div class='col-md-8'>
 			<div class="panel panel-primary">
-				<div class="panel-heading" ng-repeat="bookmark in detail.bookmarks | filter: {url: detail.urlID}">
+				<div class="panel-heading" ng-repeat="bookmark in detail.bookmarks | filter : {url: detail.urlID} : true">
 					<h3 class="panel-title">{{bookmark.title}}</h3>
 				</div>	
 				<div class='panel-body'>

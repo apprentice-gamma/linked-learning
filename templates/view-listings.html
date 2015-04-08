@@ -1,5 +1,6 @@
 <div ng-controller="BookmarkController as vmBookmark">
 <div class="col-md-8 column">
+	<p>{{vmBookmark.status}}</p>
 	<form role="form" class="form-inline">
 		<div class="form-group">
 			<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vmBookmark.search" size="50" />
