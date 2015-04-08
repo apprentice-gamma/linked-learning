@@ -27,7 +27,7 @@
 			{{comment.text}}
 		</p>
 	</div>
-	<div ng-show="vmComments.currentBookmarkURL" ng-repeat="bookmark in vmComments.bookmarks | filter:{url: vmComments.urlID}">
+	<div ng-show="vmComments.currentBookmarkURL" ng-repeat="bookmark in vmComments.bookmarks | filter:{url: vmComments.urlID} : true">
 		<div ng-repeat="comment in bookmark.comments">
 			<p>
 			<strong>{{comment.user}}</strong> {{comment.date | date}}<br />
