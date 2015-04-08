@@ -21,12 +21,18 @@
 	<h4>{{vmComments.currentTouchedURL}} </h4>
 </div>
 <div class="row">
-	<div ng-repeat="bookmark in vmComments.bookmarks | filter:{url: vmComments.urlID}">
-		<div ng-repeat="comment in bookmark.comments">
+	<div ng-show="!vmComments.currentBookmarkURL" ng-repeat="comment in vmComments.existingComments">
 		<p>
 			<strong>Placeholder for user's name.</strong> {{comment.date | date}}<br />
 			{{comment.text}}
 		</p>
+	</div>
+	<div ng-show="vmComments.currentBookmarkURL" ng-repeat="bookmark in vmComments.bookmarks | filter:{url: vmComments.urlID}">
+		<div ng-repeat="comment in bookmark.comments">
+			<p>
+				<strong>Placeholder for user's name.</strong> {{comment.date | date}}<br />
+			{{comment.text}}
+			</p>
 		</div>
 	</div>
 </div>
