@@ -74,9 +74,9 @@
 	        }
 
 	        function indexChanged (newIndex) {
-	            console.log('TEST: INDEX CHANGED', newIndex);
-	            vm.bookmark = vm.bookmarks[newIndex];
-				vm.iframeURL = "http://" + vm.bookmark.url;
+	   			// console.log('TEST: INDEX CHANGED', newIndex);
+	   			// vm.bookmark = vm.bookmarks[newIndex];
+				// vm.iframeURL = "http://" + vm.bookmark.url;
 	        }
 
 	        function pathValue() {

@@ -9,11 +9,11 @@ angular
 		vm.deleteComment = deleteComment;
 		vm.bookmarks = [];
 		vm.existingComments = [];
-		vm.currentTouchedURL;
+		vm.currentTouchedURL = "";
 		
 		vm.reload = function() {
             return $route.reload();
-        }
+        };
 
 		
 		vm.getBookmarks = function () {
@@ -23,10 +23,11 @@ angular
                 	vm.existingComments = data[BookmarkFactory.curIndex].comments;
                 	vm.currentTouchedURL = data[BookmarkFactory.curIndex].url;  
             	});
-        }
+        };
         vm.getBookmarks();
         
         vm.addComment = function(comment){
+        	console.log(comment);
         	var  newBookmark = {};
         	for (var i = 0; i < vm.bookmarks.length; i++){
         		if (vm.urlID === vm.bookmarks[i].url){
@@ -36,11 +37,12 @@ angular
     		BookmarkFactory.addComment(newBookmark, comment)
     			.success(function (){
     				comment.user = UserFactory.name;
-    				newBookmark.comments.push(comment)
+    				console.log(comment);
+    				newBookmark.comments.push(comment);
     			});
     		vm.comment = {};
             $timeout(vm.reload, 100);
-        }
+        };
 
 		
 		vm.currentBookmarkURL = $routeParams.bookmarkURL;

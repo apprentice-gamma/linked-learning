@@ -12,6 +12,7 @@
         vm.bookmarks = [];
         vm.newComment = {};
         vm.newBookmark = {};
+
         vm.search = "";
         //this should hold our status messages for errors
         vm.status = "";
@@ -19,7 +20,7 @@
         vm.loadComments = loadComments;
         vm.reload = function() {
             return $route.reload();
-        }
+        };
 
 
         vm.getBookmarks = function () {
@@ -27,7 +28,7 @@
                 .success(function (data) {
                     vm.bookmarks = data;   
                 });
-            }
+            };
         
 
         vm.getBookmarks();
