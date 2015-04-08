@@ -5,13 +5,12 @@
 	// Comments array to emulate the array of comments in Bookmark
 	function CommentsController($scope, $location, $routeParams, BookmarkFactory, $timeout, $route) {
 		var vm = this;
-		// vm.comment = { body: "", date: Date.now() };
 		vm.urlID = $routeParams.bookmarkURL;
-		// vm.addComment = addComment;
 		vm.deleteComment = deleteComment;
 		vm.bookmarks = [];
 		vm.existingComments = [];
 		vm.currentTouchedURL;
+		
 		vm.reload = function() {
             return $route.reload();
         }

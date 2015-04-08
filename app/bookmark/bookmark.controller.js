@@ -12,45 +12,36 @@
         vm.newComment = {};
         vm.newBookmark = {};
         vm.search = "";
+        vm.status;
         
-        // vm.addBookmark = addBookmark;
         vm.deleteBookmark = deleteBookmark;
         vm.loadComments = loadComments;
         vm.reload = function() {
             return $route.reload();
         }
 
-        // activate();
-
-        ////////////////
-
-        // function activate() {
-        //     vm.bookmarks = BookmarkFactory.bookmarks;
-        // }
 
         vm.getBookmarks = function () {
-        BookmarkFactory.getBookmarks()
-            .success(function (data) {
-                vm.bookmarks = data;   
-            });
-        }
+            BookmarkFactory.getBookmarks()
+                .success(function (data) {
+                    vm.bookmarks = data;   
+                });
+            }
+        
+
         vm.getBookmarks();
 
         vm.addBookmark = function(bookmark) {
 
-                console.log("adding bookmark");
-                bookmark.url = bookmark.url.replace('https://', '');
-                bookmark.url = bookmark.url.replace('http://', '');
-
-                // vm.newBookmark.date = Date.now();
-                // vm.newBookmark.comments = [];
-                
-               BookmarkFactory.addBookmark(bookmark)
-                    .success(function (bookmark) {
-                        vm.bookmarks.push(bookmark);
-                    });
-                vm.newBookmark = {};
-               $timeout(vm.reload, 100);
+            bookmark.url = bookmark.url.replace('https://', '');
+            bookmark.url = bookmark.url.replace('http://', '');
+            
+           BookmarkFactory.addBookmark(bookmark)
+                .success(function () {
+                    vm.bookmarks.push(bookmark);
+                });       
+            vm.newBookmark = {};
+           $timeout(vm.reload, 100);
                 
         }
 
