@@ -6,17 +6,18 @@
 		function DetailController ($scope, $location, $routeParams, BookmarkFactory){
 			var vm = this;
 			vm.urlID = $routeParams.bookmarkURL;
-			vm.bookmark; //= BookmarkFactory.bookmarks[BookmarkFactory.curIndex];
-			vm.iframeURL = "http://" + $routeParams.bookmarkURL;
+			vm.bookmark = {};//= BookmarkFactory.bookmarks[BookmarkFactory.curIndex];
+			vm.iframeURL = "http://" + vm.urlID;
 			vm.bookmarks = [];
+			vm.index = BookmarkFactory.curIndex;
+			vm.bookmark.title = 'title';
 
 			vm.getBookmarks = function () {
         	BookmarkFactory.getBookmarks()
             	.success(function (data) {
             		vm.bookmarks = data;
             		vm.bookmark = data[BookmarkFactory.curIndex];
-            		vm.bookmark.url = data[BookmarkFactory.curIndex].url;
-            		// vm.iframeUrl = "http://" + data[BookmarkFactory.curIndex].url;    	
+            		vm.bookmark.url = data[BookmarkFactory.curIndex].url;  	
             	});
         	}
         	vm.getBookmarks();
@@ -72,7 +73,7 @@
 	            return BookmarkFactory.curIndex;
 	        }
 
-	        function indexChanged(newIndex) {
+	        function indexChanged (newIndex) {
 	            console.log('TEST: INDEX CHANGED', newIndex);
 	            vm.bookmark = vm.bookmarks[newIndex];
 				vm.iframeURL = "http://" + vm.bookmark.url;
