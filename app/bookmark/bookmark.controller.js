@@ -13,7 +13,7 @@
         vm.newBookmark = {};
         vm.search = "";
         
-        vm.addBookmark = addBookmark;
+        // vm.addBookmark = addBookmark;
         vm.deleteBookmark = deleteBookmark;
         vm.loadComments = loadComments;
 
@@ -33,15 +33,19 @@
         }
         vm.getBookmarks();
 
-        function addBookmark() {
-                console.log("adding bookmark");
-                vm.newBookmark.url = vm.newBookmark.url.replace('https://', '');
-                vm.newBookmark.url = vm.newBookmark.url.replace('http://', '');
+        vm.addBookmark = function(bookmark) {
 
-                vm.newBookmark.date = Date.now();
-                vm.newBookmark.comments = [];
+                console.log("adding bookmark");
+                bookmark.url = bookmark.url.replace('https://', '');
+                bookmark.url = bookmark.url.replace('http://', '');
+
+                // vm.newBookmark.date = Date.now();
+                // vm.newBookmark.comments = [];
                 
-                vm.bookmarks.push(vm.newBookmark);
+               BookmarkFactory.addBookmark(bookmark)
+                    .success(function (bookmark) {
+                        vm.bookmarks.push(bookmark);
+                    });
                 vm.newBookmark = {};
                 
         }
