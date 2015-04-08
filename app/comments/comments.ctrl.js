@@ -27,7 +27,7 @@ angular
         vm.getBookmarks();
         
         vm.addComment = function(comment){
-        	console.log(comment);
+        	comment.user = UserFactory.name
         	var  newBookmark = {};
         	for (var i = 0; i < vm.bookmarks.length; i++){
         		if (vm.urlID === vm.bookmarks[i].url){
@@ -36,11 +36,9 @@ angular
         	}
     		BookmarkFactory.addComment(newBookmark, comment)
     			.success(function (){
-    				comment.user = UserFactory.name;
-    				console.log(comment);
     				newBookmark.comments.push(comment);
     			});
-    		vm.comment = {};
+    		// vm.comment = {};
             $timeout(vm.reload, 100);
         };
 
@@ -59,13 +57,13 @@ angular
 		$scope.$watch(pathValue, pathChanged);			//Watches the path in the location bar
 		    		
 		/////////////////////////////////////////////
-		function addComment() {
-			vm.existingComments.push(vm.comment);
-			vm.comment = {
-				body: "",
-				date: Date.now()
-			};
-		}
+		// function addComment() {
+		// 	vm.existingComments.push(vm.comment);
+		// 	vm.comment = {
+		// 		body: "",
+		// 		date: Date.now()
+		// 	};
+		// }
 
 		function deleteComment(bookmark, index) {
             console.log("Removing comments at " + index);
