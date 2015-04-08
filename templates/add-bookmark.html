@@ -19,12 +19,6 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-12">
-			<input type="text" class="form-control input" id="inputUser" ng-model="vmBookmark.newBookmark.user" placeholder="User (required)" name="username" required/>
-			<h5 class='text-danger' ng-show="addBookmark.username.$invalid && addBookmark.username.$dirty">USERNAME REQUIRED</h5>
-		</div>
-	</div>
-	<div class="form-group">
-		<div class="col-sm-12">
 			<button class="btn btn-success pull-right" type="submit" ng-disabled="addBookmark.$invalid" ng-click="addBookmark.$setPristine()"><span class="glyphicon glyphicon-plus-sign"></span> Add
 			</button>
 		</div>

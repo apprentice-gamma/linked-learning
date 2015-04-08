@@ -3,7 +3,7 @@
         .module('linked-learning')
         .controller('LayoutController', Controller);
 
-    function Controller($scope, $location, BookmarkFactory) {
+    function Controller($location, BookmarkFactory) {
         var vm = this;
         vm.title = 'Layout Controller';
         vm.pageR = 'add';   //values should be 'add' or 'comments'
