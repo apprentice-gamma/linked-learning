@@ -6,7 +6,7 @@
 	function CommentsController($scope, $location, $routeParams, BookmarkFactory) {
 		var vm = this;
 		vm.comment = { body: "", date: Date.now() };
-
+		vm.urlID = $routeParams.bookmarkURL;
 		vm.addComment = addComment;
 		vm.deleteComment = deleteComment;
 		vm.bookmarks = [];
