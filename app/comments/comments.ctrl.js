@@ -3,20 +3,32 @@
 	.controller("CommentsController", CommentsController);
 
 	// Comments array to emulate the array of comments in Bookmark
-	function CommentsController($scope, $location, $routeParams, BookmarkFactory, UserFactory) {
+	function CommentsController($scope, $location, $routeParams, BookmarkFactory, UserFactory $timeout, $route) {
 		var vm = this;
-		vm.comment = {
-			body: "",
-			user: "",
-			date: ""
-		};
-
-		vm.addComment = addComment;
+		vm.urlID = $routeParams.bookmarkURL;
 		vm.deleteComment = deleteComment;
-
+		vm.addComment = addComment;
+		
+		vm.bookmarks = [];
+		vm.existingComments = [];
+		vm.currentTouchedURL = "";
+		
+		vm.reload = function() {
+            return $route.reload();
+        };
+		
+		vm.getBookmarks = function () {
+        	BookmarkFactory.getBookmarks()
+            	.success(function (data) {
+            		vm.bookmarks = data;
+                	vm.existingComments = data[BookmarkFactory.curIndex].comments;
+                	vm.currentTouchedURL = data[BookmarkFactory.curIndex].url;  
+            	});
+        };
+        vm.getBookmarks();
 		vm.currentBookmarkURL = $routeParams.bookmarkURL;
-		vm.existingComments = BookmarkFactory.bookmarks[BookmarkFactory.curIndex].comments;
-		vm.currentTouchedURL = BookmarkFactory.bookmarks[BookmarkFactory.curIndex].url;
+		// vm.existingComments = vm.bookmarks[BookmarkFactory.curIndex].comments;
+		// vm.currentTouchedURL = vm.bookmarks[BookmarkFactory.curIndex].url;     
 
 		//Set watches on BookmarkFactory.curIndex and $location.path()
 		// the __Value functions return the variable's value
@@ -25,21 +37,24 @@
 		$scope.$watch(pathValue, pathChanged);			//Watches the path in the location bar
 
 		/////////////////////////////////////////////
-		function addComment() {
-			vm.comment.user = UserFactory.name;
-			vm.comment.date = Date.now();
-			vm.existingComments.push(vm.comment);
-			vm.comment = {
-				body: "",
-				user: "",
-				date: ""
-			};
+		function addComment(comment) {
+	    	var  newBookmark = {};
+	    	for (var i = 0; i < vm.bookmarks.length; i++){
+	    		if (vm.urlID === vm.bookmarks[i].url){
+	    			newBookmark = vm.bookmarks[i];
+	    		}
+	    	}
+			BookmarkFactory.addComment(newBookmark, comment)
+				.success(function (){
+					comment.user = UserFactory.name;
+					newBookmark.comments.push(comment);
+				});
+			vm.comment = {};
+	        $timeout(vm.reload, 100);
 		}
 
 		function deleteComment(bookmark, index) {
-            console.log("Removing comments at " + index);
-            bookmark.comments.splice(index, 1);
-
+ 
         }
 
 		function updateIndex(routeID) {
@@ -52,8 +67,7 @@
 
 			// console.log('UPDATE INDEX');
 			// console.log(BookmarkFactory.bookmarks.length);
-
-			for (var i = 0; i < BookmarkFactory.bookmarks.length; i++) {
+			for (var i = 0; i < vm.bookmarks; i++) {
 				// console.log('routeID: ', routeID);
 				// console.log('bookmark:', BookmarkFactory.bookmarks[i].url);
 
@@ -84,9 +98,8 @@
 		}
 
 		function indexChanged(newIndex) {
-
-			vm.existingComments = BookmarkFactory.bookmarks[newIndex].comments;
-			vm.currentTouchedURL = BookmarkFactory.bookmarks[newIndex].url;
+			vm.currentTouchedURL = vm.bookmarks[newIndex].url;
+			vm.existingComments = vm.bookmarks[newIndex].comments;
 		}
 
 		function pathValue() {

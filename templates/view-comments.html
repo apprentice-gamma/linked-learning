@@ -4,9 +4,9 @@
 			<h3 class="panel-title">Comment</h3>
 		</div>
 		<div class="panel-body">
-			<form name="commentForm" ng-submit="commentForm.$valid && vmComments.addComment()" novalidate>
+			<form name="commentForm" ng-submit="commentForm.$valid && vmComments.addComment(vmComments.comment)" novalidate>
 				<div class="form-group">
-					<textarea name="commentText" ng-model="vmComments.comment.body" class="form-control" rows="5" required></textarea>
+					<textarea name="commentText" ng-model="vmComments.comment.text" class="form-control" rows="5" required></textarea>
 					<div ng-show="commentForm.$submitted || commentForm.commentText.$touched">
 						<div ng-show="commentForm.commentText.$error.required && commentForm.commentText.$dirty">Please enter comment</div>
 					</div>
@@ -18,13 +18,21 @@
 </div>
 <div ng-show="!vmComments.currentBookmarkURL" class='row'>
 	<h3>Comments</h3>
-	<h4>{{vmComments.currentTouchedURL}}</h4>
+	<h4>{{vmComments.currentTouchedURL}} </h4>
 </div>
 <div class="row">
-	<div ng-repeat="comment in vmComments.existingComments">
+	<div ng-show="!vmComments.currentBookmarkURL" ng-repeat="comment in vmComments.existingComments">
 		<p>
 			<strong>{{comment.user}}</strong> {{comment.date | date}}<br />
-			{{comment.body}}
+			{{comment.text}}
 		</p>
+	</div>
+	<div ng-show="vmComments.currentBookmarkURL" ng-repeat="bookmark in vmComments.bookmarks | filter:{url: vmComments.urlID}">
+		<div ng-repeat="comment in bookmark.comments">
+			<p>
+			<strong>{{comment.user}}</strong> {{comment.date | date}}<br />
+			{{comment.text}}
+			</p>
+		</div>
 	</div>
 </div>

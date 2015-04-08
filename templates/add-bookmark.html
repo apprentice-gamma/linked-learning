@@ -1,5 +1,5 @@
 <h3>Add Bookmark</h3>
-<form name="addBookmark" class="form-horizontal" role="form" ng-submit="vmBookmark.addBookmark()" novalidate>
+<form name="addBookmark" class="form-horizontal" role="form" ng-submit="vmBookmark.addBookmark(vmBookmark.newBookmark)" novalidate>
 	<div class="form-group">
 		<div class="col-sm-12">
 			<input type="text" class="form-control input" id="inputURL" ng-model="vmBookmark.newBookmark.url" placeholder="URL (required)" ng-pattern="vmBookmark.urlRegEx" name = "url" required/>
@@ -22,5 +22,6 @@
 			<button class="btn btn-success pull-right" type="submit" ng-disabled="addBookmark.$invalid" ng-click="addBookmark.$setPristine()"><span class="glyphicon glyphicon-plus-sign"></span> Add
 			</button>
 		</div>
+		<p>{{vmBookmark.status}}</p>
 	</div>
 </form>

@@ -3,7 +3,8 @@
         .module('linked-learning')
         .controller('BookmarkController', BookmarkController);
 
-    function BookmarkController(BookmarkFactory, UserFactory) {
+    function BookmarkController(BookmarkFactory, UserFactory, $route, $timeout) {
+
         var vm = this;
         vm.title = "Bookmark Controller Outside";
         vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
@@ -12,31 +13,36 @@
         vm.newComment = {};
         vm.newBookmark = {};
         vm.search = "";
-
-        vm.addBookmark = addBookmark;
+        //this should hold our status messages for errors
+        vm.status = "";
         vm.deleteBookmark = deleteBookmark;
         vm.loadComments = loadComments;
-
-        activate();
-
-        ////////////////
-
-        function activate() {
-            vm.bookmarks = BookmarkFactory.bookmarks;
+        vm.reload = function() {
+            return $route.reload();
         }
 
-        function addBookmark() {
-                console.log("adding bookmark");
-                vm.newBookmark.url = vm.newBookmark.url.replace('https://', '');
-                vm.newBookmark.url = vm.newBookmark.url.replace('http://', '');
 
-                vm.newBookmark.user = UserFactory.name;
-                vm.newBookmark.date = Date.now();
-                vm.newBookmark.comments = [];
+        vm.getBookmarks = function () {
+            BookmarkFactory.getBookmarks()
+                .success(function (data) {
+                    vm.bookmarks = data;   
+                });
+            }
+        
 
-                vm.bookmarks.push(vm.newBookmark);
-                vm.newBookmark = {};
+        vm.getBookmarks();
 
+        vm.addBookmark = function(bookmark) {
+            bookmark.url = bookmark.url.replace('https://', '');
+            bookmark.url = bookmark.url.replace('http://', '');
+            bookmark.user = UserFactory.name;
+
+           BookmarkFactory.addBookmark(bookmark)
+                .success(function () {
+                    vm.bookmarks.push(bookmark);
+                });       
+            vm.newBookmark = {};
+           $timeout(vm.reload, 100);
         }
 
         function deleteBookmark(index) {
