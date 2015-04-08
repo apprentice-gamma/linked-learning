@@ -4,9 +4,9 @@
 			<h3 class="panel-title">Comment</h3>
 		</div>
 		<div class="panel-body">
-			<form name="commentForm" ng-submit="commentForm.$valid && vmComments.addComment()" novalidate>
+			<form name="commentForm" ng-submit="commentForm.$valid && vmComments.addComment(vmComments.comment)" novalidate>
 				<div class="form-group">
-					<textarea name="commentText" ng-model="vmComments.comment.body" class="form-control" rows="5" required></textarea>
+					<textarea name="commentText" ng-model="vmComments.comment.text" class="form-control" rows="5" required></textarea>
 					<div ng-show="commentForm.$submitted || commentForm.commentText.$touched">
 						<div ng-show="commentForm.commentText.$error.required && commentForm.commentText.$dirty">Please enter comment</div>
 					</div>

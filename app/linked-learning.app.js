@@ -10,7 +10,10 @@ function BookmarkFactory($http) {
     };
     factory.addBookmark = function(bookmark){
         return $http.post(url, bookmark)
-    };;
+    };
+    factory.addComment = function(bookmark, comment){
+            return $http.post(url + '/' + bookmark._id+ '/' + 'comments', comment)
+    };
     factory.curIndex = 0;
 
     // prepopulate(factory);

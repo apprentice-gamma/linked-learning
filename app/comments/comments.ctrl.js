@@ -3,15 +3,18 @@
 	.controller("CommentsController", CommentsController);
 
 	// Comments array to emulate the array of comments in Bookmark
-	function CommentsController($scope, $location, $routeParams, BookmarkFactory) {
+	function CommentsController($scope, $location, $routeParams, BookmarkFactory, $timeout, $route) {
 		var vm = this;
-		vm.comment = { body: "", date: Date.now() };
+		// vm.comment = { body: "", date: Date.now() };
 		vm.urlID = $routeParams.bookmarkURL;
-		vm.addComment = addComment;
+		// vm.addComment = addComment;
 		vm.deleteComment = deleteComment;
 		vm.bookmarks = [];
 		vm.existingComments = [];
 		vm.currentTouchedURL;
+		vm.reload = function() {
+            return $route.reload();
+        }
 
 		
 		vm.getBookmarks = function () {
@@ -24,6 +27,20 @@
         }
         vm.getBookmarks();
         
+        vm.addComment = function(comment){
+        	var  newBookmark = {};
+        	for (var i = 0; i < vm.bookmarks.length; i++){
+        		if (vm.urlID === vm.bookmarks[i].url){
+        			newBookmark = vm.bookmarks[i];
+        		}
+        	}
+    		BookmarkFactory.addComment(newBookmark, comment)
+    			.success(function (){
+    				newBookmark.comments.push(comment)
+    			});
+    		vm.comment = {};
+            $timeout(vm.reload, 100);
+        }
 
 		
 		vm.currentBookmarkURL = $routeParams.bookmarkURL;
