@@ -3,18 +3,19 @@ angular
 	.controller("CommentsController", CommentsController);
 
 	// Comments array to emulate the array of comments in Bookmark
-	function CommentsController($scope, $location, $routeParams, BookmarkFactory, UserFactory, $timeout, $route) {
+	function CommentsController($scope, $location, $routeParams, BookmarkFactory, UserFactory $timeout, $route) {
 		var vm = this;
 		vm.urlID = $routeParams.bookmarkURL;
 		vm.deleteComment = deleteComment;
+		vm.addComment = addComment;
+		
 		vm.bookmarks = [];
 		vm.existingComments = [];
-		vm.currentTouchedURL;
+		vm.currentTouchedURL = "";
 		
 		vm.reload = function() {
             return $route.reload();
-        }
-
+        };
 		
 		vm.getBookmarks = function () {
         	BookmarkFactory.getBookmarks()
@@ -23,69 +24,53 @@ angular
                 	vm.existingComments = data[BookmarkFactory.curIndex].comments;
                 	vm.currentTouchedURL = data[BookmarkFactory.curIndex].url;  
             	});
-        }
+        };
         vm.getBookmarks();
-        
-        vm.addComment = function(comment){
-        	var  newBookmark = {};
-        	for (var i = 0; i < vm.bookmarks.length; i++){
-        		if (vm.urlID === vm.bookmarks[i].url){
-        			newBookmark = vm.bookmarks[i];
-        		}
-        	}
-    		BookmarkFactory.addComment(newBookmark, comment)
-    			.success(function (){
-    				comment.user = UserFactory.name;
-    				newBookmark.comments.push(comment)
-    			});
-    		vm.comment = {};
-            $timeout(vm.reload, 100);
-        }
-
-		
 		vm.currentBookmarkURL = $routeParams.bookmarkURL;
 		// vm.existingComments = vm.bookmarks[BookmarkFactory.curIndex].comments;
-		// vm.currentTouchedURL = vm.bookmarks[BookmarkFactory.curIndex].url;
-
-		
-       
+		// vm.currentTouchedURL = vm.bookmarks[BookmarkFactory.curIndex].url;     
 
 		//Set watches on BookmarkFactory.curIndex and $location.path()
-		// the __Value functions return the variable's value 
-		// the __Changed functions get called when the variables change. 
+		// the __Value functions return the variable's value
+		// the __Changed functions get called when the variables change.
 		$scope.$watch(indexValue, indexChanged);		//Watches BookmarkFactory.curIndex
 		$scope.$watch(pathValue, pathChanged);			//Watches the path in the location bar
-		    		
+
 		/////////////////////////////////////////////
-		function addComment() {
-			vm.existingComments.push(vm.comment);
-			vm.comment = {
-				body: "",
-				date: Date.now()
-			};
+		function addComment(comment) {
+	    	var  newBookmark = {};
+	    	for (var i = 0; i < vm.bookmarks.length; i++){
+	    		if (vm.urlID === vm.bookmarks[i].url){
+	    			newBookmark = vm.bookmarks[i];
+	    		}
+	    	}
+			BookmarkFactory.addComment(newBookmark, comment)
+				.success(function (){
+					comment.user = UserFactory.name;
+					newBookmark.comments.push(comment);
+				});
+			vm.comment = {};
+	        $timeout(vm.reload, 100);
 		}
 
 		function deleteComment(bookmark, index) {
-            console.log("Removing comments at " + index);
-            bookmark.comments.splice(index, 1);
-
+ 
         }
 
 		function updateIndex(routeID) {
-			//This function is designed to update 
+			//This function is designed to update
 			// the curIndex property of BookmarkFactory
-			// It gets called when URL changes 
+			// It gets called when URL changes
 			// (as determined by the watch on $location.path)
 			// Because we're also watching the curIndex property
 			// we don't need to update the existingComments object here.
 
 			// console.log('UPDATE INDEX');
 			// console.log(BookmarkFactory.bookmarks.length);
-			
 			for (var i = 0; i < vm.bookmarks; i++) {
 				// console.log('routeID: ', routeID);
 				// console.log('bookmark:', BookmarkFactory.bookmarks[i].url);
-				
+
 				if (routeIDMatchesStoredURL(routeID, BookmarkFactory.bookmarks[i].url)) {
 					BookmarkFactory.curIndex = i;
 					break;	//exit the loop when we find a match
@@ -107,8 +92,8 @@ angular
 		/////////////////////////////////////////////
 		//These are the watch functions. They come in pairs
 		// one function returns the value watched
-		// the other runs when that value changes. 
-		function indexValue() { 
+		// the other runs when that value changes.
+		function indexValue() {
 			return BookmarkFactory.curIndex;
 		}
 
