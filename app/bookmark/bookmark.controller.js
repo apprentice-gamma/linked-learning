@@ -12,6 +12,7 @@
         vm.newComment = {};
         vm.newBookmark = {};
         vm.search = "";
+        //this should hold our status messages for errors
         vm.status;
         
         vm.deleteBookmark = deleteBookmark;
