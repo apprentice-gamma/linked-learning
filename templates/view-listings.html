@@ -11,7 +11,7 @@
 	    <accordion-group ng-repeat="bookmark in vmBookmark.bookmarks | filter: vmBookmark.search" class="panel-primary">
 	   		<accordion-heading>
 	            <i class="pull-right glyphicon glyphicon-chevron-right"></i>
-	          	<span class='glyphicon glyphicon glyphicon-bookmark'> {{bookmark.title}} - {{bookmark.url}}</span>
+	          	 {{bookmark.title}} - <span class='glyphicon glyphicon glyphicon-bookmark'> {{bookmark.url}}</span>
 	        </accordion-heading>
 	      	<a ng-href="{{'#/' + bookmark.url}}"><span class='glyphicon glyphicon glyphicon-bookmark'> {{bookmark.url}}</span></a>
 			<p>{{bookmark.description}} </p>
