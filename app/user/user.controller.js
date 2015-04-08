@@ -1,6 +1,6 @@
 angular
     .module('linked-learning')
-    .controller('AuthCtrl', ['$scope', 'GooglePlus', GoogleCTRL]);
+    .controller('AuthCtrl', GoogleCTRL);
 
 function GoogleCTRL($scope, GooglePlus) {
     var vm = this;
