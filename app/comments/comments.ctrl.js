@@ -3,7 +3,7 @@
 	.controller("CommentsController", CommentsController);
 
 	// Comments array to emulate the array of comments in Bookmark
-	function CommentsController($scope, $location, $routeParams, BookmarkFactory) {
+	function CommentsController($scope, $location, $routeParams, BookmarkFactory, UserFactory) {
 		var vm = this;
 		vm.comment = {
 			body: "",
@@ -26,6 +26,7 @@
 
 		/////////////////////////////////////////////
 		function addComment() {
+			vm.comment.user = UserFactory.name;
 			vm.comment.date = Date.now();
 			vm.existingComments.push(vm.comment);
 			vm.comment = {

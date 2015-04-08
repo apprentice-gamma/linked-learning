@@ -37,10 +37,9 @@ function GoogleCTRL($scope, GooglePlus) {
 
 angular
     .module('linked-learning')
-    .controller('CookieControl', ['$scope', '$cookies', '$cookieStore', CookieCTRL]);
+    .controller('CookieControl', CookieCTRL);
 
-function CookieCTRL($scope, $cookies, $cookieStore) {
-    $scope.name = 'NOT LOGGED IN';
+function CookieCTRL($scope, $cookies, $cookieStore, UserFactory) {
     $scope.modalShown = true;
     $scope.toggleModal = function() {
         $scope.modalShown = !$scope.modalShown;
@@ -48,20 +47,28 @@ function CookieCTRL($scope, $cookies, $cookieStore) {
 
     if ($cookieStore.get('name') !== undefined ) {
         $scope.toggleModal();
-    	$scope.name = $cookieStore.get('name');
+        UserFactory.id = $cookieStore.get('id');
+        UserFactory.name = $cookieStore.get('name');
+        UserFactory.picture = $cookieStore.get('picture');
     }
 
     $scope.$on('LOGGED_IN_WITH_GOOGLE', function(event, userData) {
         $scope.user = userData;
         $scope.modalShown = false;
 
+        $cookieStore.put('id', $scope.user.id);
         $cookieStore.put('name', $scope.user.name);
-        $scope.name = $cookieStore.get('name');
+        $cookieStore.put('picture', $scope.user.picture);
+        UserFactory.id = $cookieStore.get('id');
+        UserFactory.name = $cookieStore.get('name');
+        UserFactory.picture = $cookieStore.get('picture');
     });
 
     $scope.$on('LOGGED_OUT', function(event, data) {
         console.log("LOGGING OUT");
         $scope.modalShown = true;
+        $cookieStore.remove('id');
         $cookieStore.remove('name');
+        $cookieStore.remove('picture');
     });
 }

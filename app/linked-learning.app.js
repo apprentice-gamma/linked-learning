@@ -6,7 +6,7 @@ function BookmarkFactory() {
     var factory = {};
     factory.bookmarks = [];
     factory.curIndex = 0;
-    
+
     prepopulate(factory);
 
     return factory;
@@ -17,12 +17,14 @@ function prepopulate(factory) {
     var newComment = {};
 
     newComment.body = "Google is the best search engine EVER!";
+    newComment.user = "Robot";
     newComment.date = Date.now();
     newBookmark.comments =[];
     newBookmark.comments.push(newComment);
     newComment = {};
 
     newComment.body = "Google is not the best search engine - bing is!";
+    newComment.user = "Robot";
     newComment.date = Date.now();
     newBookmark.comments.push(newComment);
     newComment = {};
@@ -42,6 +44,7 @@ function prepopulate(factory) {
     newBookmark.date = Date.now();
     newBookmark.comments =[];
     newComment.body = "Github is super cool!";
+    newComment.user = "Robot";
     newComment.date = Date.now();
     newBookmark.comments.push(newComment);
 
