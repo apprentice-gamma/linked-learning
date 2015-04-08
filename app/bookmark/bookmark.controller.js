@@ -3,7 +3,7 @@
         .module('linked-learning')
         .controller('BookmarkController', BookmarkController);
 
-    function BookmarkController(BookmarkFactory) {
+    function BookmarkController(BookmarkFactory, UserFactory) {
         var vm = this;
         vm.title = "Bookmark Controller Outside";
         vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
@@ -12,7 +12,7 @@
         vm.newComment = {};
         vm.newBookmark = {};
         vm.search = "";
-        
+
         vm.addBookmark = addBookmark;
         vm.deleteBookmark = deleteBookmark;
         vm.loadComments = loadComments;
@@ -30,12 +30,13 @@
                 vm.newBookmark.url = vm.newBookmark.url.replace('https://', '');
                 vm.newBookmark.url = vm.newBookmark.url.replace('http://', '');
 
+                vm.newBookmark.user = UserFactory.name;
                 vm.newBookmark.date = Date.now();
                 vm.newBookmark.comments = [];
-                
+
                 vm.bookmarks.push(vm.newBookmark);
                 vm.newBookmark = {};
-                
+
         }
 
         function deleteBookmark(index) {
@@ -46,7 +47,6 @@
         function loadComments(index, layoutController) {
             if(typeof vm.bookmarks[index].comments === "undefined"){
                 vm.bookmarks[index].comments = [];
-                console.log("was undefined, but we fixed it!");
             }
 
             BookmarkFactory.curIndex = index;
