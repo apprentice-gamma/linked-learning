@@ -24,6 +24,7 @@
 
   background-color: #fff;
   box-shadow: 4px 4px 80px #000;
+  border-radius: 25px;
 }
 .ng-modal-dialog-content {
   padding:10px;
