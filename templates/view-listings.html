@@ -7,7 +7,7 @@
 		</div>
 		<div class="pull-right">{{(vmBookmark.bookmarks|filter: vmBookmark.search).length}} bookmarks of {{vmBookmark.bookmarks.length}}</div>
 	</form> <br/>
-	<div ng-controller="AccordionDemoCtrl">
+	<div>
 	  <accordion close-others="false">
 	    <accordion-group ng-repeat="bookmark in vmBookmark.bookmarks | filter: vmBookmark.search" class="panel-primary" is-open="bookmark.open">
 	   		<accordion-heading>
