@@ -41,3 +41,8 @@
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
 }
+
+.ng-modal p {
+  font-size: 125%;
+  text-align: center;
+}
