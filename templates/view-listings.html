@@ -1,5 +1,5 @@
 <div ng-controller="ListingController as vmListing">
-	<div class="col-md-8 column">
+	<div class="col-md-8 column scrollit" >
 		<p>{{vmListing.status}}</p>
 		<form role="form" class="form-inline">
 			<div class="form-group">
@@ -28,7 +28,7 @@
 		</div>
 	</div> <!-- column -->
 		<!-- RH -->
-	<div class="col-md-4 column">
+	<div class="col-md-4 column fixed">
 		<div>&nbsp;</div>
 		<div ng-include src="'./templates/add-bookmark.html'" ng-if="vmLayout.pageRight == 'add'"></div>
 		<div ng-include src="'./templates/view-comments.html'" ng-if="vmLayout.pageRight == 'comments'" ng-controller="CommentsController as vmComments"></div>

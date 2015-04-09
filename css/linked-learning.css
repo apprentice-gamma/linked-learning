@@ -8,6 +8,17 @@
   width: 100%;
 }
 
+.fixed {
+  position: fixed;
+  width: 24%;
+  right: 6%;
+  top: 8%;
+}
+.scrollit { 
+  width: 73%
+}
+
+
 .warning-text {
 	background-color: red;
 	width: 100%;
@@ -23,6 +34,7 @@
 input.ng-invalid.ng-dirty {
   border: 1px solid red;
 }
+
 input.ng-valid.ng-dirty {
   border: 1px solid green;
 }
