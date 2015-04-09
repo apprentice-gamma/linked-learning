@@ -9,12 +9,12 @@
 	</form> <br/>
 	<div ng-controller="AccordionDemoCtrl">
 	  <accordion close-others="false">
-	    <accordion-group ng-repeat="bookmark in vmBookmark.bookmarks | filter: vmBookmark.search" class="panel-primary">
+	    <accordion-group ng-repeat="bookmark in vmBookmark.bookmarks | filter: vmBookmark.search" class="panel-primary" is-open="bookmark.open">
 	   		<accordion-heading>
-	            <i class="pull-right glyphicon glyphicon-chevron-right"></i>
-	          	 {{bookmark.title}} - <span class='glyphicon glyphicon glyphicon-bookmark'> {{bookmark.url}}</span>
+	            <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': bookmark.open, 'glyphicon-chevron-right': !bookmark.open}"></i>
+	          	<span class='glyphicon glyphicon-bookmark'></span> <span>{{bookmark.title}}</span>
 	        </accordion-heading>
-	      	<a ng-href="{{'#/' + bookmark.url}}"><span class='glyphicon glyphicon glyphicon-bookmark'> {{bookmark.url}}</span></a>
+	      	<a ng-href="{{'#/' + bookmark.url}}"><h4>{{bookmark.url}}</h4></a>
 			<p>{{bookmark.description}} </p>
 			<div class="accordian-footer">
 				Added: {{bookmark.date | date}} by {{bookmark.user}}
