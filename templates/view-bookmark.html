@@ -4,6 +4,7 @@
 			<div class="panel-heading">
 				<div ng-repeat="bookmark in filtered =  (vmBookmark.bookmarks | filter : {url: vmBookmark.urlID} : true)">
 					<h3 class="panel-title">{{bookmark.title}}</h3>
+					<a ng-href="{{'http://' + bookmark.url}}" target="_blank"><span class="glyphicon glyphicon-new-window bookmark-url"> {{bookmark.url}}</span></a>
 				</div>
 				<h4 class="panel-title warning-text" ng-hide="filtered.length">The page you are viewing has not been added to the bookmarks.</br>If you find this resource valuable please go to listings, and add it there.</h4>
 			</div>

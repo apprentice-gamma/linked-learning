@@ -7,9 +7,10 @@
   border-top: 1px solid #ddd;
   width: 100%;
 }
-.btn-adjustment {
-  
-
+.bookmark-url {
+  text-align: right;
+  color: white;
+  display: block;
 }
 
 .fixed {
