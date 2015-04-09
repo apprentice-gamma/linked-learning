@@ -20,29 +20,29 @@
 
         vm.getBookmarks();
 
-        function reload () {
+        function reload() {
             return $route.reload();
         };
 
 
-        function getBookmarks () {
+        function getBookmarks() {
             BookmarkFactory.getBookmarks()
-                .success(function (data) {
-                    vm.bookmarks = data;   
+                .success(function(data) {
+                    vm.bookmarks = data;
                 });
-            };
-        
-        function addBookmark (bookmark) {
+        };
+
+        function addBookmark(bookmark) {
             bookmark.url = bookmark.url.replace('https://', '');
             bookmark.url = bookmark.url.replace('http://', '');
             bookmark.user = UserFactory.name;
 
-           BookmarkFactory.addBookmark(bookmark)
-                .success(function () {
+            BookmarkFactory.addBookmark(bookmark)
+                .success(function() {
                     vm.bookmarks.push(bookmark);
-                });       
+                });
             vm.newBookmark = {};
-           $timeout(vm.reload, 150);
+            $timeout(vm.reload, 150);
         }
 
         function deleteBookmark(index) {
@@ -51,12 +51,12 @@
         }
 
         function loadComments(index, layoutController) {
-            if(typeof vm.bookmarks[index].comments === "undefined"){
+            if (typeof vm.bookmarks[index].comments === "undefined") {
                 vm.bookmarks[index].comments = [];
             }
 
             BookmarkFactory.curIndex = index;
-            layoutController.pageRight ='comments';
+            layoutController.pageRight = 'comments';
         }
     }
 })();

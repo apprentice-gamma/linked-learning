@@ -1,4 +1,4 @@
-(function(){
+(function() {
     angular
         .module('linked-learning')
         .controller('AuthCtrl', GoogleCTRL);
@@ -10,7 +10,7 @@
         vm.login = login;
         vm.logout = logout;
 
-        function login () {
+        function login() {
             GooglePlus.login().then(function(authResult) {
                 console.log(authResult);
 
@@ -27,12 +27,12 @@
         function logout() {
             console.log("LOGOUT STAGE 1: COOKIES");
             $scope.$broadcast('LOGGED_OUT', vm.user);
-        	GooglePlus.logout().then(function() {
-        		GooglePlus.getUser().then(function(user) {
+            GooglePlus.logout().then(function() {
+                GooglePlus.getUser().then(function(user) {
                     console.log("LOGOUT STAGE 2: GOOGLE");
-        		}, function(err) {
-        			console.log('no user');
-        		});
+                }, function(err) {
+                    console.log('no user');
+                });
             }, function(err) {
                 console.log(err);
             });
@@ -45,19 +45,19 @@
         .controller('CookieControl', CookieCTRL);
 
     function CookieCTRL($scope, $cookies, $cookieStore, UserFactory) {
-    	var vm = this;
-    	vm.modalShown = true;
+        var vm = this;
+        vm.modalShown = true;
         vm.toggleModal = function() {
             vm.modalShown = !vm.modalShown;
         };
         console.log('PRE COOKIE CHECK');
-        if ($cookieStore.get('name') !== undefined ) {
-        	console.log('HAS COOKIES NOM NOM');
+        if ($cookieStore.get('name') !== undefined) {
+            console.log('HAS COOKIES NOM NOM');
             vm.toggleModal();
             eatCookies(UserFactory, $cookieStore);
-            
+
         } else {
-        	console.log("NO COOKIES SAD FACE");
+            console.log("NO COOKIES SAD FACE");
         }
 
         $scope.$on('LOGGED_IN_WITH_GOOGLE', function(event, userData) {
@@ -78,7 +78,7 @@
             $cookieStore.remove('picture');
         });
 
-        function eatCookies(UserFactory, $cookieStore){
+        function eatCookies(UserFactory, $cookieStore) {
             UserFactory.id = $cookieStore.get('id');
             UserFactory.name = $cookieStore.get('name');
             UserFactory.picture = $cookieStore.get('picture');
