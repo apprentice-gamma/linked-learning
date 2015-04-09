@@ -1,9 +1,9 @@
 (function(){
 	angular
 		.module('linked-learning')
-		.controller('DetailController', DetailController);
+		.controller('BookmarkController', BookmarkController);
 
-		function DetailController ($scope, $location, $routeParams, BookmarkFactory){
+		function BookmarkController ($scope, $location, $routeParams, BookmarkFactory){
 			var vm = this;
 			vm.urlID = $routeParams.bookmarkURL;
 			vm.bookmark = {};//= BookmarkFactory.bookmarks[BookmarkFactory.curIndex];
