@@ -6,13 +6,18 @@
 		function BookmarkController ($scope, $location, $routeParams, BookmarkFactory){
 			var vm = this;
 			vm.urlID = $routeParams.bookmarkURL;
-			vm.bookmark = {};//= BookmarkFactory.bookmarks[BookmarkFactory.curIndex];
+			vm.bookmark = {};
 			vm.iframeURL = "http://" + vm.urlID;
 			vm.bookmarks = [];
 			vm.index = BookmarkFactory.curIndex;
 			vm.bookmark.title = 'title';
+			vm.getBookmarks = getBookmarks;
 
-			vm.getBookmarks = function () {
+			vm.getBookmarks();
+       
+	        $scope.$watch(pathValue, pathChanged); 
+
+			function getBookmarks  () {
         	BookmarkFactory.getBookmarks()
             	.success(function (data) {
             		vm.bookmarks = data;
@@ -20,25 +25,8 @@
             		vm.bookmark.url = data[BookmarkFactory.curIndex].url;  	
             	});
         	}
-        	vm.getBookmarks();
-
-	        //Set watches on BookmarkFactory.curIndex and $location.path()
-	        // the __Value functions return the variable's value 
-	        // the __Changed functions get called when the variables change. 
-	        $scope.$watch(indexValue, indexChanged);        //Watches BookmarkFactory.curIndex
-	        $scope.$watch(pathValue, pathChanged);          //Watches the path in the location bar
-        
-	        function updateIndex(routeID) {
-	            //This function is designed to update 
-	            // the curIndex property of BookmarkFactory
-	            // It gets called when URL changes 
-	            // (as determined by the watch on $location.path)
-	            // Because we're also watching the curIndex property
-	            // we don't need to update the existingComments object here.
-
-	            console.log('UPDATE INDEX');
-	            // console.log(BookmarkFactory.bookmarks.length);
-	            
+        	
+	        function updateIndex(routeID) {   
 	            for (var i = 0; i < vm.bookmarks.length; i++) {
 	                console.log('routeID: ', routeID);
 	                console.log('bookmark url:', vm.bookmarks[i].url);
@@ -46,16 +34,11 @@
 	                if (routeIDMatchesStoredURL(routeID, vm.bookmarks[i].url)) {
 	                    BookmarkFactory.curIndex = i;
 	                    console.log("TEST: MATCH FOUND");
-	                    break;  //exit the loop when we find a match
+	                    break;  
 	                }
 	            }
 	        }
 
-
-	        //Chrome drops the trailing slash off URLS
-	        // check the URL string and see if it's got a trailing slash
-	        // check the path to see if it's got a trailing slash
-	        // make the two match. We want to try both ways.
 	        function routeIDMatchesStoredURL(routeID, url) {
 	            var routeIDWithSlash = routeID + '/';
 	            console.log ('TEST checking matches of url');
@@ -67,17 +50,7 @@
 
 	        /////////////////////////////////////////////
 	        //These are the watch functions. They come in pairs
-	        // one function returns the value watched
-	        // the other runs when that value changes. 
-	        function indexValue() { 
-	            return BookmarkFactory.curIndex;
-	        }
-
-	        function indexChanged (newIndex) {
-	   			// console.log('TEST: INDEX CHANGED', newIndex);
-	   			// vm.bookmark = vm.bookmarks[newIndex];
-				// vm.iframeURL = "http://" + vm.bookmark.url;
-	        }
+	        
 
 	        function pathValue() {
 	            return $location.path();
