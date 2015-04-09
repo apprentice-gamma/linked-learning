@@ -1,17 +1,16 @@
-
-<div ng-controller="DetailController as detail">
-	{{detail.urlParameter}}
+<div ng-controller="BookmarkController as vmBookmark">
+	{{vmBookmark.urlParameter}}
 	<div class='container-fluid'>
 		<div class='col-md-8'>
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<div ng-repeat="bookmark in filtered =  (detail.bookmarks | filter : {url: detail.urlID} : true)">
+					<div ng-repeat="bookmark in filtered =  (vmBookmark.bookmarks | filter : {url: vmBookmark.urlID} : true)">
 						<h3 class="panel-title">{{bookmark.title}}</h3>
-					</div>	
-						<h4 class="panel-title" ng-hide="filtered.length">The page you are viewing has not been added to the bookmarks.</br>If you find this resource valuable please go to listings, and add it there.</h4>
+					</div>
+					<h4 class="panel-title warning-text" ng-hide="filtered.length">The page you are viewing has not been added to the bookmarks.</br>If you find this resource valuable please go to listings, and add it there.</h4>
 				</div>
 				<div class='panel-body'>
-					<iframe width="100%" height="750" ng-src="{{detail.iframeURL | trust}}"></iframe>
+					<iframe width="100%" height="750" ng-src="{{vmBookmark.iframeURL | trust}}"></iframe>
 				</div>
 			</div>
 		</div>

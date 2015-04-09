@@ -1,10 +1,14 @@
-angular.module('linked-learning').factory('UserFactory', UserFactory);
+(function() {
 
-function UserFactory() {
-    var factory = {};
-    factory.id = 0;
-    factory.name = "";
-    factory.picture = "";
+    angular.module('linked-learning').factory('UserFactory', UserFactory);
 
-    return factory;
-}
+    function UserFactory() {
+        var factory = {};
+        factory.id = 0;
+        factory.name = "";
+        factory.picture = "";
+
+        return factory;
+    }
+
+})();

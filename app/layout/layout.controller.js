@@ -6,19 +6,12 @@
     function Controller($location, BookmarkFactory) {
         var vm = this;
         vm.title = 'Layout Controller';
-        vm.pageR = 'add';   //values should be 'add' or 'comments'
+        vm.pageRight = 'add';
         vm.switchToAddBookmark = switchToAddBookmark;
         vm.returnToListings = returnToListings;
-      
-        activate();
-
-        ////////////////
-
-        function activate() {
-        }
 
         function switchToAddBookmark() {
-            vm.pageR = 'add';
+            vm.pageRight = 'add';
         }
 
         function returnToListings() {

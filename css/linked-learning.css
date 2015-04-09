@@ -1,0 +1,28 @@
+.accordian-footer {
+  padding-top: 10px;
+  padding-left: -3px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  margin-top: 15px;
+  border-top: 1px solid #ddd;
+  width: 100%;
+}
+
+.warning-text {
+	background-color: red;
+	width: 100%;
+	height: 100%;
+	padding: 10px 10px;
+	border-radius: 5px;
+}
+
+.ng-invalid.ng-dirty {
+  border-color: red;
+}
+
+input.ng-invalid.ng-dirty {
+  border: 1px solid red;
+}
+input.ng-valid.ng-dirty {
+  border: 1px solid green;
+}

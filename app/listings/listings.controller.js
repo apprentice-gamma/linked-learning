@@ -1,24 +1,62 @@
-angular.module('linked-learning').controller('AccordionDemoCtrl', function ($scope) {
-  // $scope.groups = [
-  //   {
-  //     title: 'Dynamic Group Header - 1',
-  //     content: 'Dynamic Group Body - 1'
-  //   },
-  //   {
-  //     title: 'Dynamic Group Header - 2',
-  //     content: 'Dynamic Group Body - 2'
-  //   }
-  // ];
+(function() {
+    angular
+        .module('linked-learning')
+        .controller('ListingController', ListingController);
 
-  // $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+    function ListingController(BookmarkFactory, UserFactory, $route, $timeout) {
 
-  // $scope.addItem = function() {
-  //   var newItemNo = $scope.items.length + 1;
-  //   $scope.items.push('Item ' + newItemNo);
-  // };
+        var vm = this;
+        vm.title = "Bookmark Controller Outside";
+        vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
+        vm.bookmarks = [];
+        vm.newComment = {};
+        vm.newBookmark = {};
+        vm.search = "";
+        vm.deleteBookmark = deleteBookmark;
+        vm.loadComments = loadComments;
+        vm.reload = reload;
+        vm.getBookmarks = getBookmarks;
+        vm.addBookmark = addBookmark;
 
-  $scope.status = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
-});
+        vm.getBookmarks();
+
+        function reload() {
+            return $route.reload();
+        };
+
+
+        function getBookmarks() {
+            BookmarkFactory.getBookmarks()
+                .success(function(data) {
+                    vm.bookmarks = data;
+                });
+        };
+
+        function addBookmark(bookmark) {
+            bookmark.url = bookmark.url.replace('https://', '');
+            bookmark.url = bookmark.url.replace('http://', '');
+            bookmark.user = UserFactory.name;
+
+            BookmarkFactory.addBookmark(bookmark)
+                .success(function() {
+                    vm.bookmarks.push(bookmark);
+                });
+            vm.newBookmark = {};
+            $timeout(vm.reload, 150);
+        }
+
+        function deleteBookmark(index) {
+            console.log("Removing bookmark at " + index);
+            vm.bookmarks.splice(index, 1);
+        }
+
+        function loadComments(index, layoutController) {
+            if (typeof vm.bookmarks[index].comments === "undefined") {
+                vm.bookmarks[index].comments = [];
+            }
+
+            BookmarkFactory.curIndex = index;
+            layoutController.pageRight = 'comments';
+        }
+    }
+})();

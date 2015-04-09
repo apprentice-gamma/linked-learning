@@ -3,61 +3,63 @@
         .module('linked-learning')
         .controller('BookmarkController', BookmarkController);
 
-    function BookmarkController(BookmarkFactory, UserFactory, $route, $timeout) {
-
+    function BookmarkController($scope, $location, $routeParams, BookmarkFactory) {
         var vm = this;
-        vm.title = "Bookmark Controller Outside";
-        vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
-
+        vm.urlID = $routeParams.bookmarkURL;
+        vm.bookmark = {};
+        vm.iframeURL = "http://" + vm.urlID;
         vm.bookmarks = [];
-        vm.newComment = {};
-        vm.newBookmark = {};
-
-        vm.search = "";
-        //this should hold our status messages for errors
-        vm.status = "";
-        vm.deleteBookmark = deleteBookmark;
-        vm.loadComments = loadComments;
-        vm.reload = function() {
-            return $route.reload();
-        };
-
-
-        vm.getBookmarks = function () {
-            BookmarkFactory.getBookmarks()
-                .success(function (data) {
-                    vm.bookmarks = data;   
-                });
-            };
-        
+        vm.index = BookmarkFactory.curIndex;
+        vm.bookmark.title = 'title';
+        vm.getBookmarks = getBookmarks;
 
         vm.getBookmarks();
 
-        vm.addBookmark = function(bookmark) {
-            bookmark.url = bookmark.url.replace('https://', '');
-            bookmark.url = bookmark.url.replace('http://', '');
-            bookmark.user = UserFactory.name;
+        $scope.$watch(pathValue, pathChanged);
 
-           BookmarkFactory.addBookmark(bookmark)
-                .success(function () {
-                    vm.bookmarks.push(bookmark);
-                });       
-            vm.newBookmark = {};
-           $timeout(vm.reload, 150);
+        function getBookmarks() {
+            BookmarkFactory.getBookmarks()
+                .success(function(data) {
+                    vm.bookmarks = data;
+                    vm.bookmark = data[BookmarkFactory.curIndex];
+                    vm.bookmark.url = data[BookmarkFactory.curIndex].url;
+                });
         }
 
-        function deleteBookmark(index) {
-            console.log("Removing bookmark at " + index);
-            vm.bookmarks.splice(index, 1);
-        }
+        function updateIndex(routeID) {
+            for (var i = 0; i < vm.bookmarks.length; i++) {
+                console.log('routeID: ', routeID);
+                console.log('bookmark url:', vm.bookmarks[i].url);
 
-        function loadComments(index, layoutController) {
-            if(typeof vm.bookmarks[index].comments === "undefined"){
-                vm.bookmarks[index].comments = [];
+                if (routeIDMatchesStoredURL(routeID, vm.bookmarks[i].url)) {
+                    BookmarkFactory.curIndex = i;
+                    console.log("TEST: MATCH FOUND");
+                    break;
+                }
             }
-
-            BookmarkFactory.curIndex = index;
-            layoutController.pageR ='comments';
         }
+
+        function routeIDMatchesStoredURL(routeID, url) {
+            var routeIDWithSlash = routeID + '/';
+            console.log('TEST checking matches of url');
+            console.log('tempRouteID', routeIDWithSlash, url === routeIDWithSlash);
+            console.log('normRouteID', routeID, routeID === url);
+            console.log('url in BM', url);
+            return ((routeID === url) || (routeIDWithSlash === url));
+        }
+
+        /////////////////////////////////////////////
+        //These are the watch functions. They come in pairs
+
+
+        function pathValue() {
+            return $location.path();
+        }
+
+        function pathChanged(newValue) {
+            console.log("ROUTE CHANGE");
+            updateIndex($routeParams.bookmarkURL);
+        }
+
     }
 })();
