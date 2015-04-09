@@ -1,24 +1,63 @@
-angular.module('linked-learning').controller('AccordionDemoCtrl', function ($scope) {
-  // $scope.groups = [
-  //   {
-  //     title: 'Dynamic Group Header - 1',
-  //     content: 'Dynamic Group Body - 1'
-  //   },
-  //   {
-  //     title: 'Dynamic Group Header - 2',
-  //     content: 'Dynamic Group Body - 2'
-  //   }
-  // ];
+(function() {
+    angular
+        .module('linked-learning')
+        .controller('BookmarkController', BookmarkController);
 
-  // $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+    function BookmarkController(BookmarkFactory, UserFactory, $route, $timeout) {
 
-  // $scope.addItem = function() {
-  //   var newItemNo = $scope.items.length + 1;
-  //   $scope.items.push('Item ' + newItemNo);
-  // };
+        var vm = this;
+        vm.title = "Bookmark Controller Outside";
+        vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
 
-  $scope.status = {
-    isFirstOpen: true,
-    isFirstDisabled: false
-  };
-});
+        vm.bookmarks = [];
+        vm.newComment = {};
+        vm.newBookmark = {};
+
+        vm.search = "";
+        //this should hold our status messages for errors
+        vm.status = "";
+        vm.deleteBookmark = deleteBookmark;
+        vm.loadComments = loadComments;
+        vm.reload = function() {
+            return $route.reload();
+        };
+
+
+        vm.getBookmarks = function () {
+            BookmarkFactory.getBookmarks()
+                .success(function (data) {
+                    vm.bookmarks = data;   
+                });
+            };
+        
+
+        vm.getBookmarks();
+
+        vm.addBookmark = function(bookmark) {
+            bookmark.url = bookmark.url.replace('https://', '');
+            bookmark.url = bookmark.url.replace('http://', '');
+            bookmark.user = UserFactory.name;
+
+           BookmarkFactory.addBookmark(bookmark)
+                .success(function () {
+                    vm.bookmarks.push(bookmark);
+                });       
+            vm.newBookmark = {};
+           $timeout(vm.reload, 150);
+        }
+
+        function deleteBookmark(index) {
+            console.log("Removing bookmark at " + index);
+            vm.bookmarks.splice(index, 1);
+        }
+
+        function loadComments(index, layoutController) {
+            if(typeof vm.bookmarks[index].comments === "undefined"){
+                vm.bookmarks[index].comments = [];
+            }
+
+            BookmarkFactory.curIndex = index;
+            layoutController.pageR ='comments';
+        }
+    }
+})();
