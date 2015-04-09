@@ -8,32 +8,31 @@
         var vm = this;
         vm.title = "Bookmark Controller Outside";
         vm.urlRegEx = /(http(s)?:\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/=]*)/;
-
         vm.bookmarks = [];
         vm.newComment = {};
         vm.newBookmark = {};
-
         vm.search = "";
-        //this should hold our status messages for errors
-        vm.status = "";
         vm.deleteBookmark = deleteBookmark;
         vm.loadComments = loadComments;
-        vm.reload = function() {
+        vm.reload = reload;
+        vm.getBookmarks = getBookmarks;
+        vm.addBookmark = addBookmark;
+
+        vm.getBookmarks();
+
+        function reload () {
             return $route.reload();
         };
 
 
-        vm.getBookmarks = function () {
+        function getBookmarks () {
             BookmarkFactory.getBookmarks()
                 .success(function (data) {
                     vm.bookmarks = data;   
                 });
             };
         
-
-        vm.getBookmarks();
-
-        vm.addBookmark = function(bookmark) {
+        function addBookmark (bookmark) {
             bookmark.url = bookmark.url.replace('https://', '');
             bookmark.url = bookmark.url.replace('http://', '');
             bookmark.user = UserFactory.name;
