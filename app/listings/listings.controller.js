@@ -1,9 +1,9 @@
 (function() {
     angular
         .module('linked-learning')
-        .controller('BookmarkController', BookmarkController);
+        .controller('ListingController', ListingController);
 
-    function BookmarkController(BookmarkFactory, UserFactory, $route, $timeout) {
+    function ListingController(BookmarkFactory, UserFactory, $route, $timeout) {
 
         var vm = this;
         vm.title = "Bookmark Controller Outside";

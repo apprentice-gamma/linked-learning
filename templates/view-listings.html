@@ -1,15 +1,15 @@
-<div ng-controller="BookmarkController as vmBookmark">
+<div ng-controller="ListingController as vmListing">
 <div class="col-md-8 column">
-	<p>{{vmBookmark.status}}</p>
+	<p>{{vmListing.status}}</p>
 	<form role="form" class="form-inline">
 		<div class="form-group">
-			<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vmBookmark.search" size="50" />
+			<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vmListing.search" size="50" />
 		</div>
-		<div class="pull-right">{{(vmBookmark.bookmarks|filter: vmBookmark.search).length}} bookmarks of {{vmBookmark.bookmarks.length}}</div>
+		<div class="pull-right">{{(vmListing.bookmarks|filter: vmListing.search).length}} bookmarks of {{vmListing.bookmarks.length}}</div>
 	</form> <br/>
 	<div>
 	  <accordion close-others="false">
-	    <accordion-group ng-repeat="bookmark in vmBookmark.bookmarks | filter: vmBookmark.search" class="panel-primary" is-open="bookmark.open">
+	    <accordion-group ng-repeat="bookmark in vmListing.bookmarks | filter: vmListing.search" class="panel-primary" is-open="bookmark.open">
 	   		<accordion-heading>
 	            <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': bookmark.open, 'glyphicon-chevron-right': !bookmark.open}"></i>
 	          	<span class='glyphicon glyphicon-bookmark'></span> <span>{{bookmark.title}}</span>
@@ -18,11 +18,11 @@
 			<p>{{bookmark.description}} </p>
 			<div class="accordian-footer">
 				Added: {{bookmark.date | date}} by {{bookmark.user}}
-				<button class="btn btn-danger pull-right btn-xs" ng-click="vmBookmark.deleteBookmark($index)">
+				<button class="btn btn-danger pull-right btn-xs" ng-click="vmListing.deleteBookmark($index)">
 				<span class="glyphicon glyphicon-trash"></span>
 				</button>
 				&nbsp;&nbsp;
-				<button class="btn btn-info pull-right btn-xs" ng-click="vmBookmark.loadComments($index, vmLayout)">
+				<button class="btn btn-info pull-right btn-xs" ng-click="vmListing.loadComments($index, vmLayout)">
 				<span class="glyphicon glyphicon glyphicon-comment"> ({{ bookmark.comments.length }})</span>
 				</button>
 			</div>
