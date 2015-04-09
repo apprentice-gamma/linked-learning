@@ -14,9 +14,4 @@ function Configuration($routeProvider, GooglePlusProvider) {
         .otherwise({
             redirectTo: home,
         });
-
-    GooglePlusProvider.init({
-        clientId: '321395475453-f1iqbdeui513m8fi8ctkar5icg40644j.apps.googleusercontent.com',
-        apiKey: 'AIzaSyDLM0BzM_-HXaQhCEQxogLFAw3z4jM--3w'
-    });
 }
