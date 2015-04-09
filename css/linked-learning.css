@@ -7,6 +7,22 @@
   border-top: 1px solid #ddd;
   width: 100%;
 }
+.bookmark-url {
+  text-align: right;
+  color: white;
+  display: block;
+}
+
+.fixed {
+  position: fixed;
+  width: 24%;
+  right: 6%;
+  top: 12.5%;
+}
+
+.scrollit { 
+  width: 73%
+}
 
 .warning-text {
 	background-color: red;
@@ -23,6 +39,7 @@
 input.ng-invalid.ng-dirty {
   border: 1px solid red;
 }
+
 input.ng-valid.ng-dirty {
   border: 1px solid green;
 }

@@ -1,21 +1,19 @@
 <div ng-controller="BookmarkController as vmBookmark">
-	{{vmBookmark.urlParameter}}
-	<div class='container-fluid'>
-		<div class='col-md-8'>
-			<div class="panel panel-primary">
-				<div class="panel-heading">
-					<div ng-repeat="bookmark in filtered =  (vmBookmark.bookmarks | filter : {url: vmBookmark.urlID} : true)">
-						<h3 class="panel-title">{{bookmark.title}}</h3>
-					</div>
-					<h4 class="panel-title warning-text" ng-hide="filtered.length">The page you are viewing has not been added to the bookmarks.</br>If you find this resource valuable please go to listings, and add it there.</h4>
+	<div class='col-md-8'>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div ng-repeat="bookmark in filtered =  (vmBookmark.bookmarks | filter : {url: vmBookmark.urlID} : true)">
+					<h3 class="panel-title">{{bookmark.title}}</h3>
+					<a ng-href="{{'http://' + bookmark.url}}" target="_blank"><span class="glyphicon glyphicon-new-window bookmark-url"> {{bookmark.url}}</span></a>
 				</div>
-				<div class='panel-body'>
-					<iframe width="100%" height="750" ng-src="{{vmBookmark.iframeURL | trust}}"></iframe>
-				</div>
+				<h4 class="panel-title warning-text" ng-hide="filtered.length">The page you are viewing has not been added to the bookmarks.</br>If you find this resource valuable please go to listings, and add it there.</h4>
+			</div>
+			<div class='panel-body'>
+				<iframe width="100%" height="750" ng-src="{{vmBookmark.iframeURL | trust}}"></iframe>
 			</div>
 		</div>
-		<div class="col-md-4 column">
-			<div ng-include="'./templates/view-comments.html'" ng-controller="CommentsController as vmComments"></div>
-		</div>
-	<div>
+	</div>
+	<div class="col-md-4 column">
+		<div ng-include="'./templates/view-comments.html'" ng-controller="CommentsController as vmComments"></div>
+	</div>
 </div>

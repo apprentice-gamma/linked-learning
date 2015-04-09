@@ -24,6 +24,7 @@
 
   background-color: #fff;
   box-shadow: 4px 4px 80px #000;
+  border-radius: 25px;
 }
 .ng-modal-dialog-content {
   padding:10px;
@@ -39,4 +40,9 @@
   display: inline-block;
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
+}
+
+.ng-modal p {
+  font-size: 125%;
+  text-align: center;
 }
