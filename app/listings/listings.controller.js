@@ -57,7 +57,7 @@
             }
 
             BookmarkFactory.curIndex = index;
-            layoutController.pageR ='comments';
+            layoutController.pageRight ='comments';
         }
     }
 })();
