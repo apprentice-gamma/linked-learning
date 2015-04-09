@@ -5,7 +5,7 @@
 			<div class="form-group">
 				<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vmListing.search" size="50" />
 			</div>
-			<div class="pull-right">{{(vmListing.bookmarks|filter: vmListing.search).length}} bookmarks of {{vmListing.bookmarks.length}}</div>
+			<div class="pull-right">Displaying {{(vmListing.bookmarks|filter: vmListing.search).length}} out of {{vmListing.bookmarks.length}} bookmarks</div>
 		</form> <br/>
 		<div>
 		  <accordion close-others="false">
