@@ -18,9 +18,6 @@
 				<p>{{bookmark.description}} </p>
 				<div class="accordian-footer">
 					Added: {{bookmark.date | date}} by {{bookmark.user}}
-					<button class="btn btn-danger pull-right btn-xs" ng-click="vmListing.deleteBookmark($index)">
-					<span class="glyphicon glyphicon-trash"></span>
-					</button>
 					&nbsp;&nbsp;
 					<button class="btn btn-info pull-right btn-xs" ng-click="vmListing.loadComments($index, vmLayout)">
 					<span class="glyphicon glyphicon glyphicon-comment"> ({{ bookmark.comments.length }})</span>
