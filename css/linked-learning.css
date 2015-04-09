@@ -7,17 +7,21 @@
   border-top: 1px solid #ddd;
   width: 100%;
 }
+.btn-adjustment {
+  
+
+}
 
 .fixed {
   position: fixed;
   width: 24%;
   right: 6%;
-  top: 8%;
+  top: 12.5%;
 }
+
 .scrollit { 
   width: 73%
 }
-
 
 .warning-text {
 	background-color: red;

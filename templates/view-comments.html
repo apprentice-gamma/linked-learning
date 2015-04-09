@@ -16,7 +16,12 @@
 		</div>
 	</div>
 </div>
+
 <div ng-show="!vmComments.currentBookmarkURL" class='row'>
+	 <button type="button" class="btn btn-block btn-success btn-adjustment" ng-click="vmLayout.switchToAddBookmark()">
+		<em class="glyphicon glyphicon-pushpin"></em> Add New Bookmark
+	</button>
+	
 	<h3>Comments</h3>
 	<h4>{{vmComments.currentTouchedURL}} </h4>
 </div>

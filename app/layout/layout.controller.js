@@ -12,6 +12,7 @@
 
         function switchToAddBookmark() {
             vm.pageRight = 'add';
+            vm.returnToListings();
         }
 
         function returnToListings() {
