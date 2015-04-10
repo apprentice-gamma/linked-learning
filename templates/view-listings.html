@@ -12,7 +12,7 @@
 		    <accordion-group ng-repeat="bookmark in vmListing.bookmarks | filter: vmListing.search" class="panel-primary" is-open="bookmark.open">
 		   		<accordion-heading>
 		            <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': bookmark.open, 'glyphicon-chevron-right': !bookmark.open}"></i>
-		          	<span class='glyphicon glyphicon-bookmark'></span> <span>{{bookmark.title}}</span>
+		          	<span class='glyphicon glyphicon-bookmark'>&nbsp;</span><span>{{bookmark.title}}</span>
 		        </accordion-heading>
 		      	<a ng-href="{{'#/' + bookmark.url}}"><h4>{{bookmark.url}}</h4></a>
 				<p>{{bookmark.description}} </p>
