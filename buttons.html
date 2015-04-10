@@ -29,9 +29,15 @@
 						<label class="btn btn-primary glyphicon glyphicon-sort-by-attributes-alt" ng-model="radioModel" btn-radio="'descending'" ng-click="updateSort()"></label>
 					</div>
 					
-					<div class="panel panel-primary" ng-repeat="item in collection | orderBy:prefix + sort"  style="width: 200px; float: left; margin: 10px">
+					<div class="panel panel-primary" ng-repeat="item in collection | index | orderBy:prefix + sort"  style="width: 200px; float: left; margin: 10px">
 						<div class="panel panel-heading">{{item.title}}</div>
-						<div class="panel panel-body">{{item.url}}</div>
+						<div class="panel panel-body">
+							{{item.url}} <br/>
+							INDEX {{$index}}
+							<br/>
+							{{item.index}}
+
+						</div>
 						<div class="panel panel-footer">{{item.user}} - on {{item.date | date }}</div>
 					</div>
 				</div>
@@ -59,6 +65,16 @@
 				<script src="./app/comments/comments.controller.js"></script>
 				<script src="./app/bookmark/bookmark.filter.js"></script>
 				<script>
+						angular.module('linked-learning').filter('index', function () {
+							    return function (array, index) {
+							        if (!index)
+							            index = 'index';
+							        for (var i = 0; i < array.length; ++i) {
+							            array[i][index] = i;
+							        }
+							        return array;
+							    };
+							});
 						angular.module('linked-learning').controller('ButtonsCtrl', function ($scope) {
 						$scope.radioModel = 'ascending';
 						$scope.prefix = "";
