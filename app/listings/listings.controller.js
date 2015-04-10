@@ -32,7 +32,7 @@
         function setSort(sortBy) {
             console.log('sorting');
             vm.sort = sortBy;
-            vm.sortmessage = sortBy;
+            vm.sortMessage = sortBy;
         }
 
         function setOrder() {
