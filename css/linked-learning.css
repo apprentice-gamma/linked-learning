@@ -20,7 +20,7 @@
   top: 12.5%;
 }
 
-.scrollit { 
+.scrollit {
   width: 73%
 }
 
@@ -42,4 +42,8 @@ input.ng-invalid.ng-dirty {
 
 input.ng-valid.ng-dirty {
   border: 1px solid green;
+}
+
+a:hover {
+    text-decoration: none;
 }
