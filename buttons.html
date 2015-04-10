@@ -28,6 +28,7 @@
 						<label class="btn btn-primary glyphicon glyphicon-sort-by-attributes" ng-model="radioModel" btn-radio="'ascending'" ng-click="updateSort()"></label>
 						<label class="btn btn-primary glyphicon glyphicon-sort-by-attributes-alt" ng-model="radioModel" btn-radio="'descending'" ng-click="updateSort()"></label>
 					</div>
+					
 					<div class="panel panel-primary" ng-repeat="item in collection | orderBy:prefix + sort"  style="width: 200px; float: left; margin: 10px">
 						<div class="panel panel-heading">{{item.title}}</div>
 						<div class="panel panel-body">{{item.url}}</div>

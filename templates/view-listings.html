@@ -6,6 +6,24 @@
 				<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vmListing.search" size="50" />
 			</div>
 			<div class="pull-right">Displaying {{(vmListing.bookmarks|filter: vmListing.search).length}} out of {{vmListing.bookmarks.length}} bookmarks</div>
+			<div>
+				<div class="btn-group" dropdown>
+						<button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle tooltip="Sort By..."  tooltip-trigger="mouseenter" tooltip-placement="left" >
+						{{vmListing.sortMessage | uppercase}} <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="#" ng-click="vmListing.setSort('user')">USER</a></li>
+							<li><a href="#" ng-click="vmListing.setSort('title')">TITLE</a></li>
+							<li><a href="#" ng-click="vmListing.setSort('date')">DATE</a></li>
+							<li class="divider"></li>
+							<li><a href="#" ng-click="vmListing.setSort('url')">URL</a></li>
+						</ul>
+					</div>
+					<div class="btn-group" tooltip="Order By..."  tooltip-trigger="mouseenter" tooltip-placement="bottom" >
+						<label class="btn btn-primary glyphicon glyphicon-sort-by-attributes" ng-model="vmListing.order" btn-radio="'ascending'" ng-click="vmListing.setOrder()"></label>
+						<label class="btn btn-primary glyphicon glyphicon-sort-by-attributes-alt" ng-model="vmListing.order" btn-radio="'descending'" ng-click="vmListing.setOrder()"></label>
+					</div>
+			</div>
 		</form> <br/>
 		<div>
 		  <accordion close-others="false">
