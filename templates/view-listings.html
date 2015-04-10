@@ -5,7 +5,7 @@
 			<div class="form-group">
 				<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vmListing.search" size="50" />
 				<div class="btn-group" dropdown>
-						<button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle tooltip="Sort By..."  tooltip-trigger="mouseenter" tooltip-placement="left" >
+						<button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle tooltip="Sort By..."  tooltip-trigger="mouseenter" tooltip-placement="top" >
 						{{vmListing.sortMessage | uppercase}} <span class="caret"></span>
 						</button>
 						<ul class="dropdown-menu" role="menu">
@@ -16,7 +16,7 @@
 							<li><a href="" ng-click="vmListing.setSort('url')">URL</a></li>
 						</ul>
 					</div>
-					<div class="btn-group" tooltip="Order By..."  tooltip-trigger="mouseenter" tooltip-placement="bottom" >
+					<div class="btn-group" tooltip="Order By..."  tooltip-trigger="mouseenter" tooltip-placement="top" >
 						<label class="btn btn-primary glyphicon glyphicon-sort-by-attributes" ng-model="vmListing.order" btn-radio="'ascending'" ng-click="vmListing.setOrder()"></label>
 						<label class="btn btn-primary glyphicon glyphicon-sort-by-attributes-alt" ng-model="vmListing.order" btn-radio="'descending'" ng-click="vmListing.setOrder()"></label>
 					</div>
@@ -36,7 +36,7 @@
 					Added: {{bookmark.date | date}} by {{bookmark.user}}
 					&nbsp;&nbsp;
 					<button class="btn btn-info pull-right btn-xs" ng-click="vmListing.loadComments($index, vmLayout)">
-					<span class="glyphicon glyphicon glyphicon-comment"> ({{ bookmark.comments.length }})</span>
+					<span class="glyphicon glyphicon glyphicon-comment"  tooltip="Preview Comments"  tooltip-trigger="mouseenter" tooltip-placement="top"> ({{ bookmark.comments.length }})</span>
 					</button>
 				</div>
 		    </accordion-group>
