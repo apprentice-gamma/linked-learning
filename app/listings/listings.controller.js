@@ -65,7 +65,7 @@
                     vm.bookmarks.push(bookmark);
                 });
             vm.newBookmark = {};
-            $timeout(vm.reload, 150);
+            $timeout(vm.reload, 200);
         }
 
         function deleteBookmark(index) {
