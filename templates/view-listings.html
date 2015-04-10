@@ -4,12 +4,28 @@
 		<form role="form" class="form-inline">
 			<div class="form-group">
 				<label for="bookmarkSearch"><span class="glyphicon glyphicon-search">&nbsp;</span></label><input type="text" class="form-control" id="bookmarkSearch" ng-model="vmListing.search" size="50" />
+				<div class="btn-group" dropdown>
+						<button type="button" class="btn btn-primary dropdown-toggle" dropdown-toggle tooltip="Sort By..."  tooltip-trigger="mouseenter" tooltip-placement="top" >
+						{{vmListing.sortMessage | uppercase}} <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="" ng-click="vmListing.setSort('title')">TITLE</a></li>
+							<li><a href="" ng-click="vmListing.setSort('date')">DATE</a></li>
+							<li><a href="" ng-click="vmListing.setSort('user')">USER</a></li>
+							<li class="divider"></li>
+							<li><a href="" ng-click="vmListing.setSort('url')">URL</a></li>
+						</ul>
+					</div>
+					<div class="btn-group" tooltip="Order By..."  tooltip-trigger="mouseenter" tooltip-placement="top" >
+						<label class="btn btn-primary glyphicon glyphicon-sort-by-attributes" ng-model="vmListing.order" btn-radio="'ascending'" ng-click="vmListing.setOrder()"></label>
+						<label class="btn btn-primary glyphicon glyphicon-sort-by-attributes-alt" ng-model="vmListing.order" btn-radio="'descending'" ng-click="vmListing.setOrder()"></label>
+					</div>
 			</div>
 			<div class="pull-right">Displaying {{(vmListing.bookmarks|filter: vmListing.search).length}} out of {{vmListing.bookmarks.length}} bookmarks</div>
 		</form> <br/>
 		<div>
 		  <accordion close-others="false">
-		    <accordion-group ng-repeat="bookmark in vmListing.bookmarks | filter: vmListing.search" class="panel-primary" is-open="bookmark.open">
+		    <accordion-group ng-repeat="bookmark in vmListing.bookmarks | filter: vmListing.search | orderBy: vmListing.prefix + vmListing.sort" class="panel-primary" is-open="bookmark.open">
 		   		<accordion-heading>
 		            <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': bookmark.open, 'glyphicon-chevron-right': !bookmark.open}"></i>
 		          	<span class='glyphicon glyphicon-bookmark'></span> <span>{{bookmark.title}}</span>
@@ -20,7 +36,7 @@
 					Added: {{bookmark.date | date}} by {{bookmark.user}}
 					&nbsp;&nbsp;
 					<button class="btn btn-info pull-right btn-xs" ng-click="vmListing.loadComments($index, vmLayout)">
-					<span class="glyphicon glyphicon glyphicon-comment"> ({{ bookmark.comments.length }})</span>
+					<span class="glyphicon glyphicon glyphicon-comment"  tooltip="Preview Comments"  tooltip-trigger="mouseenter" tooltip-placement="top"> ({{ bookmark.comments.length }})</span>
 					</button>
 				</div>
 		    </accordion-group>
