@@ -11,7 +11,13 @@
         vm.bookmarks = [];
         vm.newComment = {};
         vm.newBookmark = {};
+        
         vm.search = "";
+        vm.order = 'ascending';
+        vm.prefix = "";
+        vm.sort = "";
+        vm.sortMessage = "Sort By";        
+
         vm.deleteBookmark = deleteBookmark;
         vm.loadComments = loadComments;
         vm.reload = reload;
@@ -19,6 +25,18 @@
         vm.addBookmark = addBookmark;
 
         vm.getBookmarks();
+                        
+        function setSort(sortBy) {
+            vm.sort = sortBy;
+            vm.sortmessage = sortBy;
+        }
+
+        function setOrder() {
+            if (vm.order == 'descending')
+                vm.prefix = "";
+            else
+                vm.prefix = "-";
+        }
 
         function reload() {
             return $route.reload();
